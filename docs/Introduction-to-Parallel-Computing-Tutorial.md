@@ -157,3 +157,27 @@ John von Neumann circa 1940s
 - 最も古いタイプのコンピュータです。
 - 例: 旧世代のメインフレーム、ミニコンピュータ、ワークステーション、シングルプロセッサ/コアPCなど。
 ![sisd2.gif](/philosophers/sisd2.gif)![sisd.gif](/philosophers/sisd.gif)
+
+### 単一命令，複数データ (SIMD)
+- 並列コンピュータの一種
+- 単一命令: すべての処理ユニットが、任意のクロックサイクルで同じ命令を実行します．
+- 複数データ: 各処理ユニットが異なるデータ要素を処理することができます．
+- グラフィックスや画像処理など、規則性の高い特殊な問題に適しています．
+- 同期実行（ロックステップ）と決定性実行
+- 2種類あります．プロセッサーアレイとベクターパイプライン
+- 例
+  - プロセッサーアレイ: Thinking Machines CM-2, MasPar MP-1 & MP-2, ILLIAC IVなど。
+  - ベクトルパイプライン: IBM 9000, Cray X-MP, Y-MP & C90, Fujitsu VP, NEC SX-2, Hitachi S820, ETA10
+  - 最近のコンピュータ、特にGPU（Graphics Processor Unit）を搭載したコンピュータの多くは、SIMD命令と実行ユニットを採用しています。
+![simd3.gif](/philosophers/simd3.gif)
+![simd.gif](/philosophers/simd.gif)![simd2.gif](/philosophers/simd2.gif)
+
+### 複数命令，単一データ (MISD)
+- 並列コンピュータの一種
+- 多重命令: 各処理ユニットが別々の命令ストリームを介して独立してデータを処理します．
+- 単一データ: 1つのデータを複数の処理ユニットに入力します．
+- このクラスの並列コンピュータは、実際にはほとんど存在しません．
+- 想定される用途としては
+  - 1つの信号ストリームに対して複数の周波数フィルタを動作させる
+  - 1つのコード化されたメッセージを解読しようとする複数の暗号アルゴリズム
+![misd4.gif](/philosophers/misd4.gif)![misd.gif](/philosophers/misd.gif)
