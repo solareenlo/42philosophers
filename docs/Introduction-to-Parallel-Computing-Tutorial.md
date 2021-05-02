@@ -525,3 +525,19 @@ $$
 - Global Arrays: 分散型配列データ構造のコンテキストで共有メモリスタイルのプログラミング環境を提供します．パブリックドメインのライブラリで，CとFortran77に対応しています．詳細情報: [https:/en.wikipedia.orgwikiGlobal_Arrays](https:/en.wikipedia.orgwikiGlobal_Arrays)
 - X10: IBMがThomas J. Watson Research Centerで開発しているPGASベースの並列プログラミング言語です．詳細はこちら: [http:/x10-lang.org](http:/x10-lang.org)
 - Chapel: Cray社が中心となって進めているオープンソースの並列プログラミング言語プロジェクト．詳細はこちら: [http:/chapel.cray.com](http:/chapel.cray.com)
+
+## ハイブリッドモデル
+- ハイブリッドモデルは，これまでに説明したプログラミングモデルのうち，2つ以上のモデルを組み合わせたものです．
+- 現在，ハイブリッドモデルの一般的な例は，メッセージパッシングモデル（MPI）とスレッドモデル（OpenMP）を組み合わせたものです．
+  - スレッドは，ノード上のローカルデータを使用して，計算量の多いカーネルを実行します．
+  - 異なるノード上のプロセス間の通信は，MPIを用いてネットワーク上で行われます．
+- このハイブリッドモデルは，現在最も普及しているハードウェア環境である，クラスター化されたマルチマニーコアマシンに適しています．
+- また，MPIとCPU-GPU(Graphics Processing Unit)を組み合わせたハイブリッドモデルも人気を集めています．
+  - MPIタスクは，CPU上でローカルメモリを使用して実行され，ネットワークを介して相互に通信します．
+  - 計算量の多いカーネルは，ノード上のGPUにオフロードされます．
+  - ノード・ローカルメモリとGPUの間のデータ交換にはCUDA（または同等のもの）を使用します．
+- その他のハイブリッドモデルも一般的です．
+  - PthreadsとMPI
+  - GPU以外のアクセラレータとMPI
+  - ...
+![hybrid_model.gif](/philosophers/hybrid_model.gif)![hybrid_model2.gif](/philosophers/hybrid_model2.gif)
