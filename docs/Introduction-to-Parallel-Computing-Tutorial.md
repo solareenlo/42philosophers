@@ -611,3 +611,10 @@ $$
 ![domain_decomp.gif](/philosophers/domain_decomp.gif)
 - データを分割する方法はさまざまです．
 ![distributions.gif](/philosophers/distributions.gif)
+
+### 機能分割
+- このアプローチでは，計算によって操作されるデータではなく，実行されるべき計算に焦点を当てます．問題は，行わなければならない作業に応じて分解されます．各タスクは，全体の作業の一部を実行します．
+![functional_decomp.gif](/philosophers/functional_decomp.gif)
+- 機能分解は，さまざまなタスクに分割できる問題に適しています．例えば
+
+#### エコシステムモデリング
