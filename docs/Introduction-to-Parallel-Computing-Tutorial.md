@@ -506,3 +506,22 @@ $$
 
 ### 詳細情報
 - MPIチュートリアル: [https://hpc-tutorials.llnl.gov/mpi](https://hpc-tutorials.llnl.gov/mpi)
+
+## データ並列モデル
+- PGAS（Partitioned Global Address Space）モデルと呼ばれることもあります．
+- データ並列モデルには，以下のような特徴があります．
+  - アドレス空間をグローバルに扱います．
+  - 並列処理の多くは，データセットに対する操作を中心に行われます．データセットは通常，配列やキューブなどの共通構造に整理されています．
+  - 一連のタスクは同じデータ構造上でまとめて作業しますが，各タスクは同じデータ構造の異なるパーティション上で作業します．
+  - タスクは，例えば「すべての配列要素に4を加える」というように，作業のパーティションに対して同じ操作を行います．
+- 共有メモリアーキテクチャでは，すべてのタスクがグローバルメモリを通じてデータ構造にアクセスできる場合があります．
+- 分散メモリアーキテクチャでは，グローバルデータ構造を論理的または物理的に分割してタスクに割り当てることができます．
+![data_parallel_model.gif](/philosophers/data_parallel_model.gif)
+
+### 実装
+- 現在，データ並列PGASモデルに基づく並列プログラミングの実装は，比較的人気があり，時には発展的なものもあります．
+- Coarray Fortran: SPMD並列プログラミングのためのFortran 95の小さな拡張セットです．コンパイラに依存します．詳細情報: [https:/en.wikipedia.orgwikiCoarray_Fortran](https:/en.wikipedia.orgwikiCoarray_Fortran)
+- Unified Parallel C (UPC): SPMD並列プログラミングのためのC言語の拡張．コンパイラに依存します．詳細はこちら: [https:/upc.lbl.gov](https:/upc.lbl.gov)
+- Global Arrays: 分散型配列データ構造のコンテキストで共有メモリスタイルのプログラミング環境を提供します．パブリックドメインのライブラリで，CとFortran77に対応しています．詳細情報: [https:/en.wikipedia.orgwikiGlobal_Arrays](https:/en.wikipedia.orgwikiGlobal_Arrays)
+- X10: IBMがThomas J. Watson Research Centerで開発しているPGASベースの並列プログラミング言語です．詳細はこちら: [http:/x10-lang.org](http:/x10-lang.org)
+- Chapel: Cray社が中心となって進めているオープンソースの並列プログラミング言語プロジェクト．詳細はこちら: [http:/chapel.cray.com](http:/chapel.cray.com)
