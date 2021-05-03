@@ -12,9 +12,9 @@ typedef struct s_data
 	int		veclen;
 }	t_data;
 
-t_data			dotstr;
-pthread_t		callthd[NUMTHREADS];
-pthread_mutex_t	mutexsum;
+t_data			g_dotstr;
+pthread_t		g_callthd[NUMTHREADS];
+pthread_mutex_t	g_mutexsum;
 
 void	*_dotprod(void *arg)
 {
@@ -23,11 +23,11 @@ void	*_dotprod(void *arg)
 	double	mysum, *x, *y;
 
 	offset = (long)arg;
-	len = dotstr.veclen;
+	len = g_dotstr.veclen;
 	start = offset * len;
 	end = start + len;
-	x = dotstr.a;
-	y = dotstr.b;
+	x = g_dotstr.a;
+	y = g_dotstr.b;
 	mysum = 0;
 	i = 0;
 	while (i < end)
@@ -35,11 +35,11 @@ void	*_dotprod(void *arg)
 		mysum += x[i] * y[i];
 		i++;
 	}
-	pthread_mutex_lock(&mutexsum);
-	dotstr.sum += mysum;
+	pthread_mutex_lock(&g_mutexsum);
+	g_dotstr.sum += mysum;
 	printf("Thread %ld did %3d to %d: mysum=%f global sum = %f\n",
-			offset, start, end, mysum, dotstr.sum);
-	pthread_mutex_unlock(&mutexsum);
+			offset, start, end, mysum, g_dotstr.sum);
+	pthread_mutex_unlock(&g_mutexsum);
 	pthread_exit(NULL);
 }
 
@@ -59,30 +59,30 @@ int	main(void)
 		b[i] = a[i];
 		i++;
 	}
-	dotstr.veclen = VECLEN;
-	dotstr.a = a;
-	dotstr.b = b;
-	dotstr.sum = 0;
-	pthread_mutex_init(&mutexsum, NULL);
+	g_dotstr.veclen = VECLEN;
+	g_dotstr.a = a;
+	g_dotstr.b = b;
+	g_dotstr.sum = 0;
+	pthread_mutex_init(&g_mutexsum, NULL);
 	pthread_attr_init(&attr);
 	pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 	i = 0;
 	while (i < NUMTHREADS)
 	{
-		pthread_create(&callthd[i], &attr, _dotprod, (void *)i);
+		pthread_create(&g_callthd[i], &attr, _dotprod, (void *)i);
 		i++;
 	}
 	pthread_attr_destroy(&attr);
 	i = 0;
 	while (i < NUMTHREADS)
 	{
-		pthread_join(callthd[i], &status);
+		pthread_join(g_callthd[i], &status);
 		i++;
 	}
-	printf("Sum = %f\n", dotstr.sum);
+	printf("Sum = %f\n", g_dotstr.sum);
 	free(a);
 	free(b);
-	pthread_mutex_destroy(&mutexsum);
+	pthread_mutex_destroy(&g_mutexsum);
 	pthread_exit(NULL);
 	return (0);
 }
