@@ -35,11 +35,11 @@ void	*_dotprod(void *arg)
 		mysum += x[i] * y[i];
 		i++;
 	}
-	/* pthread_mutex_lock(&mutexsum); */
+	pthread_mutex_lock(&mutexsum);
 	dotstr.sum += mysum;
 	printf("Thread %ld did %3d to %d: mysum=%f global sum = %f\n",
 			offset, start, end, mysum, dotstr.sum);
-	/* pthread_mutex_unlock(&mutexsum); */
+	pthread_mutex_unlock(&mutexsum);
 	pthread_exit(NULL);
 }
 
