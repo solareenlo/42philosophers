@@ -6,7 +6,7 @@
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/04 04:20:15 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/04 04:20:15 by tayamamo         ###   ########.fr        #
+#    Updated: 2021/05/04 08:30:29 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,7 @@ OBJ_DIR := obj
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJS := $(addprefix $(OBJ_DIR)/, $(OBJ))
 
-.PHONY:	all clean fclean re source
-
+.PHONY:	all
 all: $(NAME)
 
 # Linking
@@ -43,14 +42,18 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
+.PHONY: clean
 clean:
 	$(RM) Makefile.bak $(OBJ_DIR)
 
+.PHONY: fclean
 fclean: clean
 	$(RM) $(NAME)
 
+.PHONY: re
 re: fclean all
 
+.PHONY: source
 source:
 	@mv Makefile Makefile.bak
 	@echo "# **************************************************************************** #" > Makefile
