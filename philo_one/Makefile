@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/04 04:01:17 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/04 04:01:17 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/04 04:20:15 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/04 04:20:15 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Tue May  4 04:01:17 JST 2021
+# Makefile for philo_one, updated Tue May  4 04:20:15 JST 2021
 
-SRC := ft_atoi.c ft_isdigit.c ft_isspace.c ft_putargerr.c ft_puterr.c ft_strlen.c main.c
-OBJ := ft_atoi.o ft_isdigit.o ft_isspace.o ft_putargerr.o ft_puterr.o ft_strlen.o main.o
+SRC := ft_atoi.c ft_isdigit.c ft_isspace.c ft_putargerr.c ft_putstr_fd.c ft_strlen.c main.c
+OBJ := ft_atoi.o ft_isdigit.o ft_isspace.o ft_putargerr.o ft_putstr_fd.o ft_strlen.o main.o
 
 HDR := philo_one.h
 

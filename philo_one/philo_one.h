@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 04:05:04 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/04 04:19:35 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_atoi(const char *s);
 size_t	ft_strlen(const char *s);
 int		ft_isdigit(int c);
 int		ft_isspace(int c);
-void	ft_puterr(char *err);
+void	ft_putstr_fd(char *s, int fd);
 int		ft_putargerr(void);
 
 #endif
