@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 18:01:39 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/05 02:52:44 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_set_args(int argc, char *argv[], t_arg *args);
 void	ft_putargs(t_arg args);
+int		ft_set_philo(t_arg args, t_philo *philo);
+void	ft_free_philo(t_philo *philo);
 
 #endif
