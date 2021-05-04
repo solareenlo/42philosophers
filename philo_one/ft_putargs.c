@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putargs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 17:12:57 by tayamamo         ###   ########.fr       */
+/*   Created: 2021/05/04 17:10:43 by tayamamo          #+#    #+#             */
+/*   Updated: 2021/05/04 17:16:11 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	main(int argc, char *argv[])
+void	ft_putargs(t_arg args)
 {
-	t_arg	args;
-
-	if (ft_set_args(argc, argv, &args))
-		return (1);
-	ft_putargs(args);
-	return (0);
+	printf("%d\n", args.number_of_philo);
+	printf("%d\n", args.time_to_die);
+	printf("%d\n", args.time_to_eat);
+	printf("%d\n", args.time_to_sleep);
+	if (args.number_ot_times_each_philo_must_eat != -1)
+		printf("%d\n", args.number_ot_times_each_philo_must_eat);
 }

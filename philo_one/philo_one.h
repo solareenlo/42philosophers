@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 15:25:51 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/04 17:15:55 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
 
@@ -31,12 +32,11 @@
 
 typedef struct s_arg
 {
-	size_t	start_usec;
-	size_t	number_of_philo;
-	size_t	time_to_die;
-	size_t	time_to_eat;
-	size_t	time_to_sleep;
-	size_t	number_ot_times_each_philo_must_eat;
+	int	number_of_philo;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	number_ot_times_each_philo_must_eat;
 }	t_arg;
 
 typedef struct s_philo
@@ -55,5 +55,7 @@ int		ft_putargerr(void);
 size_t	ft_get_time_usec(void);
 int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
+int		ft_set_args(int argc, char *argv[], t_arg *args);
+void	ft_putargs(t_arg args);
 
 #endif
