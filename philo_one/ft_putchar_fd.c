@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 15:22:10 by tayamamo         ###   ########.fr       */
+/*   Created: 2021/03/08 17:08:54 by tayamamo          #+#    #+#             */
+/*   Updated: 2021/05/04 15:03:45 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	main(int argc, char *argv[])
+void	ft_putchar_fd(char c, int fd)
 {
-	if (ft_check_arg(argc, argv))
-		return (1);
-	return (0);
+	if (!c || fd < 0)
+		return ;
+	write(fd, &c, 1);
 }
