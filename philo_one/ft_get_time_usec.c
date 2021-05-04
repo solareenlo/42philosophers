@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_time.c                                      :+:      :+:    :+:   */
+/*   ft_get_time_usec.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:31:28 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 13:45:26 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/04 17:54:03 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_get_time_usec(void)
 {
-	t_timeval	tv;
-	size_t		res;
+	struct timeval	tv;
+	size_t			res;
 
 	gettimeofday(&tv, NULL);
 	res = 0;

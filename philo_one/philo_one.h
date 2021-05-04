@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 17:15:55 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/04 18:01:39 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define ARGERR "error: arg\nUsage: ./philo_one 1 2 3 4 [5]\n"
-# define ARG1 "\t1: number_of_philosophers (1 ~ 2048)\n"
-# define ARG2 "\t2: time_to_die (0 ~ 2147483647)\n"
-# define ARG3 "\t3: time_to_eat (0 ~ 2147483647)\n"
-# define ARG4 "\t4: time_to_sleep (0 ~ 2147483647)\n"
-# define ARG5 "\t5: [number_of_times_each_philosopher_must_eat"
-# define ARG6 " (0 ~ 2147483647)]\n"
-# define LIMITTHREADS 2048
-# define INTMAX 2147483647
+# define LIMITTHREADS	2048
+# define INTMAX			2147483647
+# define FORK			0x001
+# define EAT			0x002
+# define SLEEP			0x004
+# define THINK			0x008
+# define DIED			0x010
 
 typedef struct s_arg
 {
@@ -41,6 +39,8 @@ typedef struct s_arg
 
 typedef struct s_philo
 {
+	size_t			start_usec;
+	pthread_t		*threads;
 	pthread_mutex_t	*mutex;
 }	t_philo;
 

@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/04 17:16:33 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/04 17:16:33 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/04 17:53:30 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/04 17:53:30 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Tue May  4 17:16:33 JST 2021
+# Makefile for philo_one, updated Tue May  4 17:53:31 JST 2021
 
 SRC := ft_atoi.c ft_check_arg.c ft_check_int.c ft_get_time_usec.c ft_isdigit.c ft_isspace.c ft_putargs.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_set_args.c ft_strlen.c main.c
 OBJ := ft_atoi.o ft_check_arg.o ft_check_int.o ft_get_time_usec.o ft_isdigit.o ft_isspace.o ft_putargs.o ft_putchar_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_set_args.o ft_strlen.o main.o

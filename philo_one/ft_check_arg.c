@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:58:18 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 15:24:09 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/04 18:01:37 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	_puterr_arg(void)
 {
-	ft_putstr_fd(ARGERR, 2);
-	ft_putstr_fd(ARG1, 2);
-	ft_putstr_fd(ARG2, 2);
-	ft_putstr_fd(ARG3, 2);
-	ft_putstr_fd(ARG4, 2);
-	ft_putstr_fd(ARG5, 2);
-	ft_putstr_fd(ARG6, 2);
+	ft_putstr_fd("error: arg\nUsage: ./philo_one 1 2 3 4 [5]\n", 2);
+	ft_putstr_fd("\t1: number_of_philosophers (1 ~ 2048)\n", 2);
+	ft_putstr_fd("\t2: time_to_die (0 ~ 2147483647)\n", 2);
+	ft_putstr_fd("\t3: time_to_eat (0 ~ 2147483647)\n", 2);
+	ft_putstr_fd("\t4: time_to_sleep (0 ~ 2147483647)\n", 2);
+	ft_putstr_fd("\t5: [number_of_times_each_philosopher_must_eat", 2);
+	ft_putstr_fd(" (0 ~ 2147483647)]\n", 2);
 	return (1);
 }
 
