@@ -6,7 +6,7 @@
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/05 02:53:11 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/05 13:13:16 by tayamamo         ###   ########.fr        #
+#    Updated: 2021/05/05 13:17:36 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,16 +43,16 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 .PHONY: thread
-fsanitizethread: CFLAGS += -g -fsanitize=thread
-fsanitizethread: re
+thread: CFLAGS += -g -fsanitize=thread
+thread: re
 
 .PHONY: leak
-memoryleaks: CFLAGS += -g -fsanitize=leak
-memoryleaks: re
+leak: CFLAGS += -g -fsanitize=leak
+leak: re
 
 .PHONY: address
-fsanitizeaddress: CFLAGS += -g -fsanitize=address
-fsanitizeaddress: re
+address: CFLAGS += -g -fsanitize=address
+address: re
 
 .PHONY: clean
 clean:
