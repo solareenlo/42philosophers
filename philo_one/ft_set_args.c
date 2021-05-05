@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 16:55:26 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 17:13:38 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 02:10:30 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_set_args(int argc, char *argv[], t_arg *args)
 {
 	if (ft_check_arg(argc, argv))
 		return (1);
-	memset(args, 0, sizeof(*args));
+	ft_memset(args, 0, sizeof(*args));
 	args->number_of_philo = ft_atoi(argv[1]);
 	args->time_to_die = ft_atoi(argv[2]);
 	args->time_to_eat = ft_atoi(argv[3]);

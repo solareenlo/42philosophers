@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/05 02:53:11 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/05 13:17:36 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/06 02:10:00 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/06 02:10:00 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Wed May  5 02:53:11 JST 2021
+# Makefile for philo_one, updated Thu May  6 02:10:00 JST 2021
 
-SRC := ft_atoi.c ft_check_arg.c ft_check_int.c ft_free_philo.c ft_get_time_usec.c ft_isdigit.c ft_isspace.c ft_putargs.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_set_args.c ft_set_philo.c ft_strlen.c main.c
-OBJ := ft_atoi.o ft_check_arg.o ft_check_int.o ft_free_philo.o ft_get_time_usec.o ft_isdigit.o ft_isspace.o ft_putargs.o ft_putchar_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_set_args.o ft_set_philo.o ft_strlen.o main.o
+SRC := ft_atoi.c ft_check_arg.c ft_check_int.c ft_free_philo.c ft_get_time_usec.c ft_isdigit.c ft_isspace.c ft_memset.c ft_putargs.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_set_args.c ft_set_philo.c ft_strlen.c main.c
+OBJ := ft_atoi.o ft_check_arg.o ft_check_int.o ft_free_philo.o ft_get_time_usec.o ft_isdigit.o ft_isspace.o ft_memset.o ft_putargs.o ft_putchar_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_set_args.o ft_set_philo.o ft_strlen.o main.o
 
 HDR := philo_one.h
 

@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/05 02:52:44 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 02:09:31 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ typedef struct s_philo
 }	t_philo;
 
 int		ft_atoi(const char *s);
-size_t	ft_strlen(const char *s);
 int		ft_isdigit(int c);
 int		ft_isspace(int c);
+void	*ft_memset(void *dst, int val, size_t n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+size_t	ft_strlen(const char *s);
 int		ft_putargerr(void);
 size_t	ft_get_time_usec(void);
 int		ft_check_arg(int argc, char *argv[]);
