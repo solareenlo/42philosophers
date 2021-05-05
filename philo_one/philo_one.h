@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 02:38:15 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 02:40:20 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_philo
 
 int		ft_atoi(const char *s);
 void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t cnt, size_t size);
 int		ft_isdigit(int c);
 int		ft_isspace(int c);
 void	*ft_memset(void *dst, int val, size_t n);
