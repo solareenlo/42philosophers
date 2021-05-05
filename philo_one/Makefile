@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/06 02:40:23 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/06 02:40:23 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/06 03:03:56 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/06 03:03:56 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Thu May  6 02:40:23 JST 2021
+# Makefile for philo_one, updated Thu May  6 03:03:56 JST 2021
 
-SRC := ft_atoi.c ft_bzero.c ft_calloc.c ft_check_arg.c ft_check_int.c ft_free_philo.c ft_get_time_usec.c ft_isdigit.c ft_isspace.c ft_memset.c ft_putargs.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_set_args.c ft_set_philo.c ft_strlen.c main.c
-OBJ := ft_atoi.o ft_bzero.o ft_calloc.o ft_check_arg.o ft_check_int.o ft_free_philo.o ft_get_time_usec.o ft_isdigit.o ft_isspace.o ft_memset.o ft_putargs.o ft_putchar_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_set_args.o ft_set_philo.o ft_strlen.o main.o
+SRC := ft_atoi.c ft_bzero.c ft_calloc.c ft_check_arg.c ft_check_int.c ft_free_philo.c ft_get_time_usec.c ft_init_mutex.c ft_isdigit.c ft_isspace.c ft_memset.c ft_putargs.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_set_args.c ft_set_philo.c ft_strlen.c main.c
+OBJ := ft_atoi.o ft_bzero.o ft_calloc.o ft_check_arg.o ft_check_int.o ft_free_philo.o ft_get_time_usec.o ft_init_mutex.o ft_isdigit.o ft_isspace.o ft_memset.o ft_putargs.o ft_putchar_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_set_args.o ft_set_philo.o ft_strlen.o main.o
 
 HDR := philo_one.h
 
