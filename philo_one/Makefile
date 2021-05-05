@@ -6,7 +6,7 @@
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/05 02:53:11 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/05 02:53:11 by tayamamo         ###   ########.fr        #
+#    Updated: 2021/05/05 13:13:16 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HDR := philo_one.h
 NAME := philo_one
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS := -Wall -Wextra -Werror
 RM := rm -fr
 
 SRC_DIR := ./
@@ -41,6 +41,18 @@ $(NAME): $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
+
+.PHONY: thread
+fsanitizethread: CFLAGS += -g -fsanitize=thread
+fsanitizethread: re
+
+.PHONY: leak
+memoryleaks: CFLAGS += -g -fsanitize=leak
+memoryleaks: re
+
+.PHONY: address
+fsanitizeaddress: CFLAGS += -g -fsanitize=address
+fsanitizeaddress: re
 
 .PHONY: clean
 clean:
