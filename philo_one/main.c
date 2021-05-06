@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 03:50:26 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 04:06:56 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	*_monitor_philos(void *var)
 int	_run_monitor(t_monitor *monitor)
 {
 	void	*id;
-	size_t	now;
 
 	if (pthread_create(&monitor->thread, NULL, &_monitor_philos, monitor) != 0)
 		return (1);
@@ -36,10 +35,7 @@ int	_run_monitor(t_monitor *monitor)
 	if (pthread_mutex_lock(&monitor->m_message) != 0)
 		return (1);
 	if (id)
-	{
-		now = ft_get_time_usec();
-		printf("%ld %d died\n", now, *(int *)id);
-	}
+		ft_print_philo((monitor->philos)[0], DONE);
 	if (pthread_mutex_unlock(&monitor->m_message) != 0)
 		return (1);
 	return (0);

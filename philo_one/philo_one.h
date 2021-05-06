@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 18:54:38 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 04:00:56 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define SLEEP			0x004
 # define THINK			0x008
 # define DIED			0x010
+# define DONE			0x020
 
 typedef struct s_arg
 {
@@ -74,6 +75,7 @@ void			ft_putargs(t_arg args);
 int				ft_run_philos(t_philo ***philos, t_monitor *monitor,
 					t_arg args);
 void			*ft_dining_philo(void *var);
+void			ft_print_philo(t_philo *philo, int status);
 void			ft_free_philos(t_philo ***philos, int n);
 
 int				ft_atoi(const char *s);

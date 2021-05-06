@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:52:31 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 19:22:30 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 04:06:28 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 static void	*_eating(t_philo *philo)
 {
-	size_t	now;
-
 	if (pthread_mutex_lock(philo->m_message) != 0)
 		return (NULL);
-	now = ft_get_time_usec();
-	printf("%ld %d is eating\n", now - philo->args->start_time, philo->id);
+	ft_print_philo(philo, EAT);
 	usleep(philo->args->time_to_eat);
 	if (pthread_mutex_unlock(philo->m_message) != 0)
 		return (NULL);
@@ -28,12 +25,9 @@ static void	*_eating(t_philo *philo)
 
 static void	*_sleeping(t_philo *philo)
 {
-	size_t	now;
-
 	if (pthread_mutex_lock(philo->m_message) != 0)
 		return (NULL);
-	now = ft_get_time_usec();
-	printf("%ld %d is sleeping\n", now - philo->args->start_time, philo->id);
+	ft_print_philo(philo, SLEEP);
 	usleep(philo->args->time_to_sleep);
 	if (pthread_mutex_unlock(philo->m_message) != 0)
 		return (NULL);
@@ -42,12 +36,9 @@ static void	*_sleeping(t_philo *philo)
 
 static void	*_thinking(t_philo *philo)
 {
-	size_t	now;
-
 	if (pthread_mutex_lock(philo->m_message) != 0)
 		return (NULL);
-	now = ft_get_time_usec();
-	printf("%ld %d is thinking\n", now - philo->args->start_time, philo->id);
+	ft_print_philo(philo, THINK);
 	if (pthread_mutex_unlock(philo->m_message) != 0)
 		return (NULL);
 	return (philo);
