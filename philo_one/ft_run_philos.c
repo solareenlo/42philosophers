@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:45:10 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 18:54:44 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 19:25:16 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_run_philos(t_philo ***philos, t_monitor *monitor, t_arg args)
 			return (1);
 		i++;
 	}
-	usleep(1000);
+	usleep(5000);
 	i = 0;
 	while (i < args.number_of_philo)
 	{
