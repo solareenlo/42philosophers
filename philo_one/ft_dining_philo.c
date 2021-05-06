@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_run_philos.c                                    :+:      :+:    :+:   */
+/*   ft_dining_philo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/06 18:45:10 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 18:54:44 by tayamamo         ###   ########.fr       */
+/*   Created: 2021/05/06 18:52:31 by tayamamo          #+#    #+#             */
+/*   Updated: 2021/05/06 18:54:23 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	ft_run_philos(t_philo ***philos, t_monitor *monitor, t_arg args)
+void	*ft_dining_philo(void *var)
 {
-	int	i;
+	t_philo	*philo;
+	int		i;
 
+	philo = (t_philo *)var;
+	if (pthread_mutex_lock(philo->m_message) != 0)
+		return (NULL);
 	i = 0;
-	while (i < args.number_of_philo)
+	while (42)
 	{
-		(*philos)[i]->m_message = &(monitor->m_message);
-		if (pthread_create(&((*philos)[i]->thread), NULL, &ft_dining_philo,
-			(void *)(*philos)[i]) != 0)
-			return (1);
+		if (i > 3)
+			break ;
+		printf("id:%d\n", philo->id);
 		i++;
 	}
-	usleep(1000);
-	i = 0;
-	while (i < args.number_of_philo)
-	{
-		if (pthread_detach((*philos)[i]->thread) != 0)
-			return (1);
-		i++;
-	}
-	return (0);
+	if (pthread_mutex_unlock(philo->m_message) != 0)
+		return (NULL);
+	return (NULL);
 }
