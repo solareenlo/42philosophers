@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 17:00:28 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 18:45:51 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*m_cnt;
+	pthread_mutex_t	*m_message;
 }	t_philo;
 
 typedef struct s_monitor
@@ -55,7 +56,7 @@ typedef struct s_monitor
 	pthread_t		thread;
 	t_arg			*args;
 	t_philo			**philos;
-	pthread_mutex_t	m_status;
+	pthread_mutex_t	m_message;
 }	t_monitor;
 
 int				ft_putargerr(void);
@@ -70,6 +71,8 @@ int				ft_set_philos(t_philo ***philos, t_arg *args,
 int				ft_set_monitor(t_monitor *monitor, t_philo **philos,
 					t_arg *args);
 void			ft_putargs(t_arg args);
+int				ft_run_philos(t_philo ***philos, t_monitor *monitor,
+					t_arg args);
 void			ft_free_philos(t_philo ***philos, int n);
 
 int				ft_atoi(const char *s);

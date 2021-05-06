@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 11:55:31 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 12:04:08 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 17:42:50 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_free_philos(t_philo ***philos, int n)
 	if (*philos == NULL)
 		return ;
 	i = 0;
-	while ((*philos)[i] != NULL && i < n)
+	while (i < n)
 	{
 		free((*philos)[i]);
 		i++;

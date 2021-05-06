@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 18:05:36 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 16:28:19 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 17:24:14 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_set_philos(t_philo ***philos, t_arg *args, pthread_mutex_t *forks)
 {
 	int	i;
 
-	*philos = ft_calloc(args->number_of_philo + 1, sizeof(t_philo *));
+	*philos = ft_calloc(args->number_of_philo, sizeof(t_philo *));
 	if (*philos == NULL)
 		return (ft_puterr_malloc());
 	i = 0;

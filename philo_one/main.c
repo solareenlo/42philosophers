@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 17:00:43 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 18:45:57 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char *argv[])
 	pthread_mutex_t	*forks;
 	t_philo			**philos;
 	t_monitor		monitor;
-	int				i;
 
 	if (ft_set_args(&args, argc, argv))
 		return (1);
@@ -29,12 +28,8 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (ft_set_monitor(&monitor, philos, &args))
 		return (1);
-	i = 0;
-	while (i < args.number_of_philo)
-	{
-		printf("%d %ld\n", monitor.philos[i]->id, monitor.philos[i]->last_time);
-		i++;
-	}
+	if (ft_run_philos(&philos, &monitor, args))
+		return (1);
 	free(forks);
 	ft_free_philos(&philos, args.number_of_philo);
 	return (0);
