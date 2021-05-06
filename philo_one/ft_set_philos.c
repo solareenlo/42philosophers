@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 18:05:36 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 17:24:14 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 04:47:59 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_set_philos(t_philo ***philos, t_arg *args, pthread_mutex_t *forks)
 		(*philos)[i]->last_time = args->start_time;
 		(*philos)[i]->right_fork = &forks[i % args->number_of_philo];
 		(*philos)[i]->left_fork = &forks[(i + 1) % args->number_of_philo];
+		/* (*philos)[i]->right_fork = &forks[(i + i % 2) % args->number_of_philo]; */
+		/* (*philos)[i]->left_fork = &forks[(i + !(i % 2)) % args->number_of_philo]; */
 		i++;
 	}
 	return (0);

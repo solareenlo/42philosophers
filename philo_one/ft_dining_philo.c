@@ -6,40 +6,62 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:52:31 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 04:06:28 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 05:03:53 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
+static void	*_fork(t_philo *philo)
+{
+	if (philo->id % 2)
+	{
+		if (pthread_mutex_lock(philo->right_fork) != 0)
+			return (NULL);
+	}
+	else
+	{
+		if (pthread_mutex_lock(philo->left_fork) != 0)
+			return (NULL);
+	}
+	if (ft_mutex_put_message(philo, FORK) == NULL)
+		return (NULL);
+	if (philo->id % 2)
+	{
+		if (pthread_mutex_lock(philo->left_fork) != 0)
+			return (NULL);
+	}
+	else
+	{
+		if (pthread_mutex_lock(philo->right_fork) != 0)
+			return (NULL);
+	}
+	if (ft_mutex_put_message(philo, FORK) == NULL)
+		return (NULL);
+	return (philo);
+}
+
 static void	*_eating(t_philo *philo)
 {
-	if (pthread_mutex_lock(philo->m_message) != 0)
+	if (ft_mutex_put_message(philo, EAT) == NULL)
 		return (NULL);
-	ft_print_philo(philo, EAT);
-	usleep(philo->args->time_to_eat);
-	if (pthread_mutex_unlock(philo->m_message) != 0)
+	if (pthread_mutex_unlock(philo->right_fork) != 0)
+		return (NULL);
+	if (pthread_mutex_unlock(philo->left_fork) != 0)
 		return (NULL);
 	return (philo);
 }
 
 static void	*_sleeping(t_philo *philo)
 {
-	if (pthread_mutex_lock(philo->m_message) != 0)
-		return (NULL);
-	ft_print_philo(philo, SLEEP);
-	usleep(philo->args->time_to_sleep);
-	if (pthread_mutex_unlock(philo->m_message) != 0)
+	if (ft_mutex_put_message(philo, SLEEP) == NULL)
 		return (NULL);
 	return (philo);
 }
 
 static void	*_thinking(t_philo *philo)
 {
-	if (pthread_mutex_lock(philo->m_message) != 0)
-		return (NULL);
-	ft_print_philo(philo, THINK);
-	if (pthread_mutex_unlock(philo->m_message) != 0)
+	if (ft_mutex_put_message(philo, THINK) == NULL)
 		return (NULL);
 	return (philo);
 }
@@ -55,9 +77,14 @@ void	*ft_dining_philo(void *var)
 	{
 		if (i > 0)
 			break ;
-		_eating(philo);
-		_sleeping(philo);
-		_thinking(philo);
+		if (_fork(philo) == NULL)
+			return (var);
+		if (_eating(philo) == NULL)
+			return (var);
+		if (_sleeping(philo) == NULL)
+			return (var);
+		if (_thinking(philo) == NULL)
+			return (var);
 		i++;
 	}
 	return (NULL);
