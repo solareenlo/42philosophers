@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 04:58:16 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 05:21:04 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,35 +63,34 @@ typedef struct s_monitor
 	pthread_mutex_t	*m_died;
 }	t_monitor;
 
-int				ft_putargerr(void);
-size_t			ft_get_time_usec(void);
-int				ft_check_arg(int argc, char *argv[]);
-int				ft_check_int(char *argv);
-pthread_mutex_t	*ft_init_mutex(int n);
-int				ft_set_args(t_arg *args, int argc, char *argv[]);
-int				ft_set_forks(pthread_mutex_t **forks, int n);
-int				ft_set_philos(t_philo ***philos, t_arg *args,
-					pthread_mutex_t *forks);
-int				ft_set_monitor(t_monitor *monitor, t_philo **philos,
-					t_arg *args);
-void			ft_putargs(t_arg args);
-int				ft_run_philos(t_philo ***philos, t_monitor *monitor,
-					t_arg args);
-void			*ft_dining_philo(void *var);
-void			ft_print_philo(t_philo *philo, int status);
-void			*ft_mutex_put_message(t_philo *philo, int status);
-void			ft_free_philos(t_philo ***philos, int n);
+int		ft_putargerr(void);
+size_t	ft_get_time_usec(void);
+int		ft_check_arg(int argc, char *argv[]);
+int		ft_check_int(char *argv);
+int		ft_set_args(t_arg *args, int argc, char *argv[]);
+int		ft_set_forks(pthread_mutex_t **forks, int n);
+int		ft_set_philos(t_philo ***philos, t_arg *args,
+			pthread_mutex_t *forks);
+int		ft_set_monitor(t_monitor *monitor, t_philo **philos,
+			t_arg *args);
+void	ft_putargs(t_arg args);
+int		ft_run_philos(t_philo ***philos, t_monitor *monitor,
+			t_arg args);
+void	*ft_dining_philo(void *var);
+void	ft_print_philo(t_philo *philo, int status);
+void	*ft_mutex_put_message(t_philo *philo, int status);
+void	ft_free_philos(t_philo ***philos, int n);
 
-int				ft_atoi(const char *s);
-void			ft_bzero(void *s, size_t n);
-void			*ft_calloc(size_t cnt, size_t size);
-int				ft_isdigit(int c);
-int				ft_isspace(int c);
-void			*ft_memset(void *dst, int val, size_t n);
-void			ft_putchar_fd(char c, int fd);
-int				ft_puterr_malloc(void);
-void			ft_putnbr_fd(int n, int fd);
-void			ft_putstr_fd(char *s, int fd);
-size_t			ft_strlen(const char *s);
+int		ft_atoi(const char *s);
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t cnt, size_t size);
+int		ft_isdigit(int c);
+int		ft_isspace(int c);
+void	*ft_memset(void *dst, int val, size_t n);
+void	ft_putchar_fd(char c, int fd);
+int		ft_puterr_malloc(void);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putstr_fd(char *s, int fd);
+size_t	ft_strlen(const char *s);
 
 #endif
