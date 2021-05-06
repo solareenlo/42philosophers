@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 10:04:57 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 12:03:39 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ typedef struct s_arg
 
 typedef struct s_philo
 {
-	t_arg			*args;
 	pthread_t		thread;
+	t_arg			*args;
 	size_t			last_time;
 	int				id;
 	int				cnt;
@@ -52,9 +52,9 @@ typedef struct s_philo
 
 typedef struct s_monitor
 {
+	pthread_t		thread;
 	t_arg			*args;
 	t_philo			*philos;
-	pthread_t		thread;
 	pthread_mutex_t	m_status;
 }	t_monitor;
 
@@ -65,8 +65,11 @@ int				ft_check_int(char *argv);
 pthread_mutex_t	*ft_init_mutex(int n);
 int				ft_set_args(t_arg *args, int argc, char *argv[]);
 int				ft_set_forks(pthread_mutex_t **forks, int n);
+int				ft_set_philos(t_philo ***philos, t_arg *args,
+				pthread_mutex_t *forks);
 void			ft_putargs(t_arg args);
-int				ft_set_philo(t_philo *philo, t_arg args);
+void			ft_free_philos(t_philo ***philos, int n);
+
 int				ft_atoi(const char *s);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t cnt, size_t size);

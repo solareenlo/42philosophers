@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 02:57:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 03:00:40 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 10:09:36 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ pthread_mutex_t	*ft_init_mutex(int n)
 	i = 0;
 	while (i < n)
 	{
-		pthread_mutex_init(&res[i], NULL);
+		if (pthread_mutex_init(&res[i], NULL) != 0)
+		{
+			free(res);
+			return (NULL);
+		}
 		i++;
 	}
 	return (res);

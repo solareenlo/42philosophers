@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_philo.c                                     :+:      :+:    :+:   */
+/*   ft_free_.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/04 18:05:36 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 10:03:35 by tayamamo         ###   ########.fr       */
+/*   Created: 2021/05/06 11:55:31 by tayamamo          #+#    #+#             */
+/*   Updated: 2021/05/06 12:04:08 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	_puterr_malloc(void)
+void	ft_free_philos(t_philo ***philos, int n)
 {
-	ft_putstr_fd("Error: malloc failed\n", 2);
-	return (1);
-}
+	int	i;
 
-int	ft_set_philo(t_philo *philo, t_arg args)
-{
-	ft_memset(philo, 0, sizeof(*philo));
-	philo->args = &args;
-	return (0);
+	if (*philos == NULL)
+		return ;
+	i = 0;
+	while ((*philos)[i] != NULL && i < n)
+	{
+		free((*philos)[i]);
+		i++;
+	}
+	free(*philos);
 }
