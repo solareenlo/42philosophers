@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/06 03:03:56 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/06 03:03:56 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/06 10:00:37 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/06 10:00:37 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Thu May  6 03:03:56 JST 2021
+# Makefile for philo_one, updated Thu May  6 10:00:37 JST 2021
 
-SRC := ft_atoi.c ft_bzero.c ft_calloc.c ft_check_arg.c ft_check_int.c ft_free_philo.c ft_get_time_usec.c ft_init_mutex.c ft_isdigit.c ft_isspace.c ft_memset.c ft_putargs.c ft_putchar_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_set_args.c ft_set_philo.c ft_strlen.c main.c
-OBJ := ft_atoi.o ft_bzero.o ft_calloc.o ft_check_arg.o ft_check_int.o ft_free_philo.o ft_get_time_usec.o ft_init_mutex.o ft_isdigit.o ft_isspace.o ft_memset.o ft_putargs.o ft_putchar_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_set_args.o ft_set_philo.o ft_strlen.o main.o
+SRC := ft_check_arg.c ft_check_int.c ft_get_time_usec.c ft_init_monitor.c ft_init_mutex.c ft_putargs.c ft_set_args.c ft_set_forks.c ft_set_philo.c libft_ft_atoi.c libft_ft_bzero.c libft_ft_calloc.c libft_ft_isdigit.c libft_ft_isspace.c libft_ft_memset.c libft_ft_putchar_fd.c libft_ft_putnbr_fd.c libft_ft_putstr_fd.c libft_ft_strlen.c main.c
+OBJ := ft_check_arg.o ft_check_int.o ft_get_time_usec.o ft_init_monitor.o ft_init_mutex.o ft_putargs.o ft_set_args.o ft_set_forks.o ft_set_philo.o libft_ft_atoi.o libft_ft_bzero.o libft_ft_calloc.o libft_ft_isdigit.o libft_ft_isspace.o libft_ft_memset.o libft_ft_putchar_fd.o libft_ft_putnbr_fd.o libft_ft_putstr_fd.o libft_ft_strlen.o main.o
 
 HDR := philo_one.h
 

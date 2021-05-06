@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:58:18 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 18:01:37 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 06:52:56 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	_puterr_arg(void)
 {
 	ft_putstr_fd("error: arg\nUsage: ./philo_one 1 2 3 4 [5]\n", 2);
-	ft_putstr_fd("\t1: number_of_philosophers (1 ~ 2048)\n", 2);
+	ft_putstr_fd("\t1: number_of_philosophers (1 ~ 1000)\n", 2);
 	ft_putstr_fd("\t2: time_to_die (0 ~ 2147483647)\n", 2);
 	ft_putstr_fd("\t3: time_to_eat (0 ~ 2147483647)\n", 2);
 	ft_putstr_fd("\t4: time_to_sleep (0 ~ 2147483647)\n", 2);
@@ -27,7 +27,7 @@ static int	_puterr_arg(void)
 static int	_puterr_arg_1(void)
 {
 	ft_putstr_fd("Error: arg1\n", 2);
-	ft_putstr_fd("number_of_philosophers must be between 2 and 2048.\n", 2);
+	ft_putstr_fd("number_of_philosophers must be between 2 and 1000.\n", 2);
 	return (1);
 }
 
@@ -56,7 +56,7 @@ int	ft_check_arg(int argc, char *argv[])
 	if (argc < 5 || 6 < argc)
 		return (_puterr_arg());
 	tmp = ft_atoi(argv[1]);
-	if (ft_check_int(argv[1]) || tmp < 2 || 2048 < tmp)
+	if (ft_check_int(argv[1]) || tmp < 2 || 1000 < tmp)
 		return (_puterr_arg_1());
 	i = 2;
 	while (i < argc)

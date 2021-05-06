@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_philo.c                                    :+:      :+:    :+:   */
+/*   ft_set_forks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/05 02:51:19 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/05 02:52:26 by tayamamo         ###   ########.fr       */
+/*   Created: 2021/05/06 03:06:45 by tayamamo          #+#    #+#             */
+/*   Updated: 2021/05/06 03:13:59 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void	ft_free_philo(t_philo *philo)
+int	ft_set_forks(pthread_mutex_t **forks, int n)
 {
-	if (philo->threads)
-		free(philo->threads);
-	if (philo->mutex)
-		free(philo->mutex);
+	*forks = ft_init_mutex(n);
+	if (forks == NULL)
+		return (1);
+	return (0);
 }
