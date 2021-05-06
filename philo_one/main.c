@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/06 10:05:09 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/06 10:07:12 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char *argv[])
 	t_arg			args;
 	pthread_mutex_t	*forks;
 	t_philo			philo;
-	/* t_monitor		monitor; */
 
 	if (ft_set_args(&args, argc, argv))
 		return (1);
