@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:52:31 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 05:03:53 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 05:13:20 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,6 @@ static void	*_eating(t_philo *philo)
 	return (philo);
 }
 
-static void	*_sleeping(t_philo *philo)
-{
-	if (ft_mutex_put_message(philo, SLEEP) == NULL)
-		return (NULL);
-	return (philo);
-}
-
-static void	*_thinking(t_philo *philo)
-{
-	if (ft_mutex_put_message(philo, THINK) == NULL)
-		return (NULL);
-	return (philo);
-}
-
 void	*ft_dining_philo(void *var)
 {
 	t_philo	*philo;
@@ -81,9 +67,9 @@ void	*ft_dining_philo(void *var)
 			return (var);
 		if (_eating(philo) == NULL)
 			return (var);
-		if (_sleeping(philo) == NULL)
+		if (ft_mutex_put_message(philo, SLEEP) == NULL)
 			return (var);
-		if (_thinking(philo) == NULL)
+		if (ft_mutex_put_message(philo, THINK) == NULL)
 			return (var);
 		i++;
 	}
