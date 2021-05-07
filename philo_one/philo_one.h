@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 05:29:32 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 09:59:12 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ typedef struct s_arg
 {
 	size_t	start_time;
 	int		number_of_philo;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		number_ot_times_each_philo_must_eat;
+	size_t	time_to_die;
+	size_t	time_to_eat;
+	size_t	time_to_sleep;
+	int		number_of_times_each_philo_must_eat;
 }	t_arg;
 
 typedef struct s_philo
@@ -64,8 +64,6 @@ typedef struct s_monitor
 	pthread_mutex_t	*m_died;
 }	t_monitor;
 
-int		ft_putargerr(void);
-size_t	ft_get_time_usec(void);
 int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_set_args(t_arg *args, int argc, char *argv[]);
@@ -80,6 +78,8 @@ int		ft_run_philos(t_philo ***philos, t_monitor *monitor,
 void	*ft_dining_philo(void *var);
 void	ft_print_philo(t_philo *philo, int status);
 void	*ft_mutex_put_message(t_philo *philo, int status);
+size_t	ft_time_get_usec(void);
+size_t	ft_time_diff_msec(size_t start, size_t end);
 void	ft_free_philos(t_philo ***philos, int n);
 
 int		ft_atoi(const char *s);

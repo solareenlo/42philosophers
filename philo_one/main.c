@@ -6,19 +6,11 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 05:52:59 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 10:08:59 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
-
-int	_time_diff_msec(size_t time1, size_t time2)
-{
-	int	res;
-
-	res = (time2 - time1) / 1000;
-	return (res);
-}
 
 int	*_get_id_dead_philo(t_philo **philos)
 {
@@ -30,13 +22,32 @@ int	*_get_id_dead_philo(t_philo **philos)
 	{
 		if (pthread_mutex_lock(philos[i]->m_died) != 0)
 			return (NULL);
-		now = ft_get_time_usec();
-		if (_time_diff_msec(philos[i]->args->start_time, now) >= philos[i]->args->time_to_die)
+		now = ft_time_get_usec();
+		if (ft_time_diff_msec(philos[i]->args->start_time, now) >= philos[i]->args->time_to_die)
 			return (&(philos[i]->id));
 		if (pthread_mutex_unlock(philos[i]->m_died) != 0)
 			return (NULL);
 	}
 	return (NULL);
+}
+
+int	_is_philos_full(t_philo *philos, t_arg *args)
+{
+	int	i;
+
+	i = 0;
+	while (i < args->number_of_philo)
+	{
+		pthread_mutex_lock(philos[i].m_done);
+		if (philos[i].done == 0)
+		{
+			pthread_mutex_unlock(philos[i].m_done);
+			return (0);
+		}
+		pthread_mutex_unlock(philos[i].m_done);
+		i++;
+	}
+	return (1);
 }
 
 void	*_monitor_philos(void *var)
@@ -54,6 +65,9 @@ void	*_monitor_philos(void *var)
 		id = _get_id_dead_philo(philos);
 		if (id)
 			return (id);
+		if (args->number_of_times_each_philo_must_eat != -1)
+			if (_is_philos_full(*philos, args))
+				return (NULL);
 	}
 	return (NULL);
 }

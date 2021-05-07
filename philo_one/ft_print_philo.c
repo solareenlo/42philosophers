@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 03:52:36 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 04:00:11 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 09:45:16 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,22 @@
 void	ft_print_philo(t_philo *philo, int status)
 {
 	size_t	now;
+	size_t	start;
+	int		diff;
 
+	start = philo->args->start_time;
+	now = ft_time_get_usec();
+	diff = ft_time_diff_msec(start, now);
 	if (status == DONE)
-	{
 		printf("DONE!\n");
-	}
 	else if (status == FORK)
-	{
-		now = ft_get_time_usec();
-		printf("%ld %d has taken a fork\n", now - philo->args->start_time, philo->id);
-	}
+		printf("%d %d has taken a fork\n", diff, philo->id);
 	else if (status == EAT)
-	{
-		now = ft_get_time_usec();
-		printf("%ld %d is eating\n", now - philo->args->start_time, philo->id);
-	}
+		printf("%d %d is eating\n", diff, philo->id);
 	else if (status == SLEEP)
-	{
-		now = ft_get_time_usec();
-		printf("%ld %d is sleeping\n", now - philo->args->start_time, philo->id);
-	}
+		printf("%d %d is sleeping\n", diff, philo->id);
 	else if (status == THINK)
-	{
-		now = ft_get_time_usec();
-		printf("%ld %d is thinking\n", now - philo->args->start_time, philo->id);
-	}
+		printf("%d %d is thinking\n", diff, philo->id);
 	else if (status == DIED)
-	{
-		now = ft_get_time_usec();
-		printf("%ld %d is died\n", now - philo->args->start_time, philo->id);
-	}
+		printf("%d %d is died\n", diff, philo->id);
 }
