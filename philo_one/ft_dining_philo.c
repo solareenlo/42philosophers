@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 18:52:31 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 10:11:06 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 12:30:54 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ static void	*_eating(t_philo *philo)
 {
 	if (ft_mutex_put_message(philo, EAT) == NULL)
 		return (NULL);
+	pthread_mutex_lock(philo->m_died);
+	philo->last_time = ft_time_get_usec();
+	pthread_mutex_unlock(philo->m_died);
 	if (philo->args->number_of_times_each_philo_must_eat != -1)
 		_cnt_eating(philo);
 	if (pthread_mutex_unlock(philo->right_fork) != 0)

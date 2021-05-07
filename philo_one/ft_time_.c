@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 09:30:00 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 09:53:20 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 12:35:04 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,12 @@ size_t	ft_time_diff_msec(size_t start, size_t end)
 	size_t	res;
 
 	res = (end - start) / 1000;
+	return (res);
+}
+size_t	ft_time_diff_usec(size_t start, size_t end)
+{
+	size_t	res;
+
+	res = (end - start);
 	return (res);
 }
