@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 23:55:58 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/08 02:17:07 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,8 @@ int	_run_monitor(t_monitor *monitor)
 		return (1);
 	if (pthread_join(monitor->thread, &id) != 0)
 		return (1);
-	if (pthread_mutex_lock(&monitor->m_message) != 0)
-		return (1);
 	if (id)
 		ft_print_philo((monitor->philos)[*(int *)id - 1], DIED);
-	if (pthread_mutex_unlock(&monitor->m_message) != 0)
-		return (1);
 	return (0);
 }
 

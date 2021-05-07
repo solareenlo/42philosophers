@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/08 00:05:23 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/08 02:13:09 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,11 @@ int	ft_set_monitor(t_monitor *monitor, t_philo **philos, t_arg *args)
 	monitor->m_died = _init_mutex(args->number_of_philo);
 	if (monitor->m_died == NULL)
 		return (1);
-	monitor->m_done = _init_mutex(args->number_of_philo);
-	if (monitor->m_done == NULL)
-		return (1);
+	if (args->number_of_times_each_philo_must_eat != -1)
+	{
+		monitor->m_done = _init_mutex(args->number_of_philo);
+		if (monitor->m_done == NULL)
+			return (1);
+	}
 	return (0);
 }
