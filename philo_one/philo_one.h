@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 12:35:15 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 22:10:33 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	*ft_mutex_put_message(t_philo *philo, int status);
 size_t	ft_time_get_usec(void);
 size_t	ft_time_diff_msec(size_t start, size_t end);
 size_t	ft_time_diff_usec(size_t start, size_t end);
+void	ft_time_usleep(size_t sleep);
 void	ft_free_philos(t_philo ***philos, int n);
 
 int		ft_atoi(const char *s);

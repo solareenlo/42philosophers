@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 12:35:27 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 21:26:48 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	*_get_id_dead_philo(t_philo **philos)
 		if (pthread_mutex_lock(philos[i]->m_died) != 0)
 			return (NULL);
 		now = ft_time_get_usec();
-		if (ft_time_diff_usec(philos[i]->last_time, now) >= philos[i]->args->time_to_die)
+		if (ft_time_diff_usec(philos[i]->last_time, now)
+			>= philos[i]->args->time_to_die)
 			return (&(philos[i]->id));
 		if (pthread_mutex_unlock(philos[i]->m_died) != 0)
 			return (NULL);
@@ -98,7 +99,6 @@ int	main(int argc, char *argv[])
 
 	if (ft_set_args(&args, argc, argv))
 		return (1);
-	ft_putargs(args);
 	if (ft_set_forks(&forks, args.number_of_philo))
 		return (1);
 	if (ft_set_philos(&philos, &args, forks))
