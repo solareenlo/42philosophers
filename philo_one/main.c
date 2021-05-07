@@ -6,22 +6,56 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 04:14:59 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 05:52:59 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
+int	_time_diff_msec(size_t time1, size_t time2)
+{
+	int	res;
+
+	res = (time2 - time1) / 1000;
+	return (res);
+}
+
+int	*_get_id_dead_philo(t_philo **philos)
+{
+	size_t	now;
+	int		i;
+
+	i = 0;
+	while (i < philos[i]->args->number_of_philo)
+	{
+		if (pthread_mutex_lock(philos[i]->m_died) != 0)
+			return (NULL);
+		now = ft_get_time_usec();
+		if (_time_diff_msec(philos[i]->args->start_time, now) >= philos[i]->args->time_to_die)
+			return (&(philos[i]->id));
+		if (pthread_mutex_unlock(philos[i]->m_died) != 0)
+			return (NULL);
+	}
+	return (NULL);
+}
 
 void	*_monitor_philos(void *var)
 {
 	t_arg			*args;
 	t_philo			**philos;
 	t_monitor		monitor;
+	void			*id;
 
 	monitor = *(t_monitor *)var;
 	args = monitor.args;
 	philos = monitor.philos;
-	return ((void *)(&(monitor.philos)[0]->id));
+	while (42)
+	{
+		id = _get_id_dead_philo(philos);
+		if (id)
+			return (id);
+	}
+	return (NULL);
 }
 
 int	_run_monitor(t_monitor *monitor)
@@ -35,7 +69,7 @@ int	_run_monitor(t_monitor *monitor)
 	if (pthread_mutex_lock(&monitor->m_message) != 0)
 		return (1);
 	if (id)
-		ft_print_philo((monitor->philos)[0], DONE);
+		ft_print_philo((monitor->philos)[*(int *)id - 1], DIED);
 	if (pthread_mutex_unlock(&monitor->m_message) != 0)
 		return (1);
 	return (0);
