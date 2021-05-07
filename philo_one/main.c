@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:21:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/07 21:26:48 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/07 23:55:58 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ int	*_get_id_dead_philo(t_philo **philos)
 {
 	size_t	now;
 	int		i;
+	int		n;
 
 	i = 0;
-	while (i < philos[i]->args->number_of_philo)
+	n = philos[0]->args->number_of_philo;
+	while (i < n)
 	{
 		if (pthread_mutex_lock(philos[i]->m_died) != 0)
 			return (NULL);
@@ -28,6 +30,7 @@ int	*_get_id_dead_philo(t_philo **philos)
 			return (&(philos[i]->id));
 		if (pthread_mutex_unlock(philos[i]->m_died) != 0)
 			return (NULL);
+		i++;
 	}
 	return (NULL);
 }
@@ -55,12 +58,12 @@ void	*_monitor_philos(void *var)
 {
 	t_arg			*args;
 	t_philo			**philos;
-	t_monitor		monitor;
+	t_monitor		*monitor;
 	void			*id;
 
-	monitor = *(t_monitor *)var;
-	args = monitor.args;
-	philos = monitor.philos;
+	monitor = (t_monitor *)var;
+	args = monitor->args;
+	philos = monitor->philos;
 	while (42)
 	{
 		id = _get_id_dead_philo(philos);
@@ -69,6 +72,7 @@ void	*_monitor_philos(void *var)
 		if (args->number_of_times_each_philo_must_eat != -1)
 			if (_is_philos_full(*philos, args))
 				return (NULL);
+		ft_time_usleep(5);
 	}
 	return (NULL);
 }
