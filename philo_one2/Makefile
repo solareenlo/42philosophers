@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/08 04:02:40 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/08 04:02:40 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/08 05:16:06 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/08 05:16:06 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Sat May  8 04:02:40 JST 2021
+# Makefile for philo_one, updated Sat May  8 05:16:06 JST 2021
 
-SRC := ft_check_arg.c ft_check_int.c ft_free_.c ft_put_args.c ft_set_.c ft_time_.c libft_ft_atoi.c libft_ft_bzero.c libft_ft_calloc.c libft_ft_isdigit.c libft_ft_isspace.c libft_ft_memset.c libft_ft_putchar_fd.c libft_ft_puterr_malloc.c libft_ft_putnbr_fd.c libft_ft_putstr_fd.c libft_ft_strlen.c main.c
-OBJ := ft_check_arg.o ft_check_int.o ft_free_.o ft_put_args.o ft_set_.o ft_time_.o libft_ft_atoi.o libft_ft_bzero.o libft_ft_calloc.o libft_ft_isdigit.o libft_ft_isspace.o libft_ft_memset.o libft_ft_putchar_fd.o libft_ft_puterr_malloc.o libft_ft_putnbr_fd.o libft_ft_putstr_fd.o libft_ft_strlen.o main.o
+SRC := ft_check_arg.c ft_check_int.c ft_dining_philo.c ft_free_.c ft_put_args.c ft_put_message.c ft_set_.c ft_time_.c libft_ft_atoi.c libft_ft_bzero.c libft_ft_calloc.c libft_ft_isdigit.c libft_ft_isspace.c libft_ft_memset.c libft_ft_putchar_fd.c libft_ft_puterr_malloc.c libft_ft_putnbr_fd.c libft_ft_putstr_fd.c libft_ft_strlen.c main.c
+OBJ := ft_check_arg.o ft_check_int.o ft_dining_philo.o ft_free_.o ft_put_args.o ft_put_message.o ft_set_.o ft_time_.o libft_ft_atoi.o libft_ft_bzero.o libft_ft_calloc.o libft_ft_isdigit.o libft_ft_isspace.o libft_ft_memset.o libft_ft_putchar_fd.o libft_ft_puterr_malloc.o libft_ft_putnbr_fd.o libft_ft_putstr_fd.o libft_ft_strlen.o main.o
 
 HDR := philo_one.h
 

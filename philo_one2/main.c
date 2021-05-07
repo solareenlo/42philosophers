@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 03:50:49 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/08 04:37:34 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/08 05:16:46 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,6 @@ void	_init_mutexes(pthread_mutex_t *forks, t_monitor *mon, t_arg args)
 	pthread_mutex_init(&mon->m_message, NULL);
 }
 
-void	*_dine_philo(void *args)
-{
-	(void)args;
-	return (NULL);
-}
-
 void		_run_philos(t_philo *ph, pthread_mutex_t *forks, t_monitor *mon, t_arg *args)
 {
 	int	i;
@@ -75,7 +69,7 @@ void		_run_philos(t_philo *ph, pthread_mutex_t *forks, t_monitor *mon, t_arg *ar
 		if (args->number_of_times_each_philo_must_eat != -1)
 			ph[i].m_done = &mon->m_done[i];
 		ph[i].m_message = &mon->m_message;
-		pthread_create(&ph[i].thread, NULL, &_dine_philo, &ph[i]);
+		pthread_create(&ph[i].thread, NULL, &ft_dining_philo, &ph[i]);
 		i++;
 	}
 	i = 0;
@@ -92,7 +86,6 @@ int	main(int argc, char *argv[])
 
 	if (ft_set_args(&args, argc, argv))
 		return (1);
-	ft_put_args(args);
 	if (_set_malloc(&philos, &forks, &monitor, args))
 		return (1);
 	_init_mutexes(forks, &monitor, args);
