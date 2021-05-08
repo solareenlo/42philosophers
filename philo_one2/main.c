@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 03:50:49 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/08 05:16:46 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:55:44 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,19 @@ void		_run_philos(t_philo *ph, pthread_mutex_t *forks, t_monitor *mon, t_arg *ar
 		pthread_detach(ph[i++].thread);
 }
 
+void	_run_monitor(t_monitor *mon, t_philo *ph, t_arg *args)
+{
+	int	*id;
+
+	mon->args = args;
+	mon->philos = ph;
+	pthread_create(&mon->thread, NULL, &ft_monitor_philos, mon);
+	pthread_join(mon->thread, (void **)&id);
+	pthread_mutex_lock(&mon->m_message);
+	if (id)
+		ft_put_status(ph, DIED);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_arg			args;
@@ -90,7 +103,11 @@ int	main(int argc, char *argv[])
 		return (1);
 	_init_mutexes(forks, &monitor, args);
 	_run_philos(philos, forks, &monitor, &args);
+	_run_monitor(&monitor, philos, &args);
 	free(philos);
 	free(forks);
+	free(monitor.m_died);
+	if (args.number_of_times_each_philo_must_eat != -1)
+		free(monitor.m_done);
 	return (0);
 }

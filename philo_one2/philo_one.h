@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/08 05:15:51 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/08 10:40:03 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_monitor
 {
 	pthread_t		thread;
 	t_arg			*args;
-	t_philo			**philos;
+	t_philo			*philos;
 	pthread_mutex_t	m_message;
 	pthread_mutex_t	*m_done;
 	pthread_mutex_t	*m_died;
@@ -77,6 +77,7 @@ size_t	ft_time_diff_usec(size_t start, size_t end);
 void	ft_time_usleep(size_t sleep);
 void	ft_free_philos(t_philo ***philos, int n);
 void	*ft_dining_philo(void *vars);
+void	*ft_monitor_philos(void *vars);
 
 int		ft_atoi(const char *s);
 void	ft_bzero(void *s, size_t n);
