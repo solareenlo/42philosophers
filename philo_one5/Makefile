@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/11 13:56:31 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/11 13:56:31 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/11 14:21:02 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/11 14:21:02 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Tue May 11 13:56:31 JST 2021
+# Makefile for philo_one, updated Tue May 11 14:21:02 JST 2021
 
-SRC := ft_check_arg.c ft_check_int.c ft_put_args.c ft_set_.c ft_time_.c libft1.c libft2.c libft_ft_atoi.c main.c
-OBJ := ft_check_arg.o ft_check_int.o ft_put_args.o ft_set_.o ft_time_.o libft1.o libft2.o libft_ft_atoi.o main.o
+SRC := ft_check_arg.c ft_check_int.c ft_destroy_free.c ft_set_.c ft_time_.c libft1.c libft2.c libft_ft_atoi.c main.c philo_utils.c
+OBJ := ft_check_arg.o ft_check_int.o ft_destroy_free.o ft_set_.o ft_time_.o libft1.o libft2.o libft_ft_atoi.o main.o philo_utils.o
 
 HDR := philo_one.h
 

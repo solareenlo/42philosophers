@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 13:56:49 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/11 14:22:16 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_set_args(t_arg *args, int argc, char *argv[]);
 void	ft_put_args(t_arg args);
+int		ft_put_err(const char *err);
+int		ft_destory_free(t_arg args, t_philo **philos, t_monitor *monitor);
+
 size_t	ft_time_get_usec(void);
 size_t	ft_time_get_msec(void);
 size_t	ft_time_diff_msec(size_t start, size_t end);
