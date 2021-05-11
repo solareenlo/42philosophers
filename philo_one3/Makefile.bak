@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/11 12:18:46 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/11 12:18:46 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/11 12:16:35 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/11 12:16:35 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Tue May 11 12:18:46 JST 2021
+# Makefile for philo_one, updated Tue May 11 12:16:35 JST 2021
 
-SRC := ft_check_arg.c ft_check_int.c ft_free_.c ft_put_args.c ft_set_.c ft_time_.c libft1.c libft2.c libft_ft_atoi.c main.c
-OBJ := ft_check_arg.o ft_check_int.o ft_free_.o ft_put_args.o ft_set_.o ft_time_.o libft1.o libft2.o libft_ft_atoi.o main.o
+SRC := ft_check_arg.c ft_check_int.c ft_free_.c ft_put_args.c ft_set_.c ft_time_.c libft1.c libft_ft_atoi.c libft_ft_putchar_fd.c libft_ft_puterr_malloc.c libft_ft_putnbr_fd.c libft_ft_putstr_fd.c libft_ft_strlen.c main.c
+OBJ := ft_check_arg.o ft_check_int.o ft_free_.o ft_put_args.o ft_set_.o ft_time_.o libft1.o libft_ft_atoi.o libft_ft_putchar_fd.o libft_ft_puterr_malloc.o libft_ft_putnbr_fd.o libft_ft_putstr_fd.o libft_ft_strlen.o main.o
 
 HDR := philo_one.h
 
