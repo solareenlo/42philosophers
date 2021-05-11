@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 03:50:49 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 19:58:52 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/11 20:03:58 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	main(int argc, char *argv[])
 
 	if (ft_set_args(&args, argc, argv))
 		return (1);
-	ft_put_args(args);
 	global.m_forks = NULL;
 	if (ft_init_philos(&args, &global))
 		return (ft_destory_free(args, &global)
@@ -79,5 +78,8 @@ int	main(int argc, char *argv[])
 	if (_run_threads(&global))
 		return (ft_destory_free(args, &global)
 				&& ft_put_err("error: fatal\n"));
+	pthread_mutex_lock(&global.m_died);
+	pthread_mutex_unlock(&global.m_died);
+	ft_destory_free(args, &global);
 	return (0);
 }
