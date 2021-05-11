@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 12:27:02 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/11 12:44:04 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_arg
 	size_t	time_to_die;
 	size_t	time_to_eat;
 	size_t	time_to_sleep;
-	int		number_of_times_each_philo_must_eat;
+	size_t	number_of_times_each_philo_must_eat;
 }	t_arg;
 
 typedef struct s_philo
