@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 14:22:16 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/11 14:35:47 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_monitor
 int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_set_args(t_arg *args, int argc, char *argv[]);
+int		ft_set_philos(t_philo *philos, t_arg *args);
+int		ft_set_monitor(t_monitor *monitor, t_philo *philos, t_arg *args);
 void	ft_put_args(t_arg args);
 int		ft_put_err(const char *err);
 int		ft_destory_free(t_arg args, t_philo **philos, t_monitor *monitor);
