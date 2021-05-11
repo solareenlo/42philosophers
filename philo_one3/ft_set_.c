@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/08 04:00:23 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/11 12:41:48 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	ft_set_args(t_arg *args, int argc, char *argv[])
 			return (1);
 	}
 	else
-		args->number_of_times_each_philo_must_eat = -1;
+		args->number_of_times_each_philo_must_eat = 0;
 	return (0);
 }
