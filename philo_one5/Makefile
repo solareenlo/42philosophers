@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/11 14:36:36 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/11 14:36:36 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/11 18:03:29 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/11 18:03:29 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Tue May 11 14:36:36 JST 2021
+# Makefile for philo_one, updated Tue May 11 18:03:29 JST 2021
 
-SRC := ft_check_arg.c ft_check_int.c ft_destroy_free.c ft_set_func.c ft_time_.c libft1.c libft2.c libft_ft_atoi.c main.c philo_utils.c
-OBJ := ft_check_arg.o ft_check_int.o ft_destroy_free.o ft_set_func.o ft_time_.o libft1.o libft2.o libft_ft_atoi.o main.o philo_utils.o
+SRC := ft_check_arg.c ft_check_int.c ft_destroy_free.c ft_dining_philo.c ft_set_func.c ft_time_.c libft1.c libft2.c libft_ft_atoi.c main.c philo_utils.c
+OBJ := ft_check_arg.o ft_check_int.o ft_destroy_free.o ft_dining_philo.o ft_set_func.o ft_time_.o libft1.o libft2.o libft_ft_atoi.o main.o philo_utils.o
 
 HDR := philo_one.h
 

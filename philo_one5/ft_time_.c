@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 09:30:00 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/08 03:56:51 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/11 16:56:30 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@ size_t	ft_time_get_usec(void)
 	res += tv.tv_sec * 1000000;
 	res += tv.tv_usec;
 	return (res);
-}
-
-size_t	ft_time_get_msec(void)
-{
-	struct timeval	tv;
-	size_t			res;
-
-	gettimeofday(&tv, NULL);
-	res = 0;
-	res += tv.tv_sec * 1000000;
-	res += tv.tv_usec;
-	return (res / 1000);
 }
 
 size_t	ft_time_diff_msec(size_t start, size_t end)
@@ -52,7 +40,7 @@ size_t	ft_time_diff_usec(size_t start, size_t end)
 	return (res);
 }
 
-void	ft_time_usleep(size_t sleep)
+void	ft_usleep(size_t sleep)
 {
 	size_t	stop;
 

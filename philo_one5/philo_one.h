@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 14:35:47 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/11 19:55:23 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,23 @@
 # define DIED			0x010
 # define DONE			0x020
 
+struct s_global;
+
 typedef struct s_arg
 {
-	size_t	start_time;
 	int		number_of_philo;
 	size_t	time_to_die;
 	size_t	time_to_eat;
 	size_t	time_to_sleep;
-	size_t	number_of_times_each_philo_must_eat;
+	int		number_of_times_each_philo_must_eat;
 }	t_arg;
 
 typedef struct s_philo
 {
-	pthread_t		thread;
 	t_arg			*args;
-	size_t			last_time;
+	struct s_global	*global;
+	size_t			last_eat;
+	size_t			limit;
 	int				pos;
 	int				cnt;
 	int				done;
@@ -53,30 +55,32 @@ typedef struct s_philo
 	pthread_mutex_t	mutex;
 }	t_philo;
 
-typedef struct s_monitor
+typedef struct s_global
 {
-	pthread_t		thread;
+	size_t			start_time;
 	t_arg			*args;
 	t_philo			*philos;
 	pthread_mutex_t	*m_forks;
 	pthread_mutex_t	m_message;
 	pthread_mutex_t	m_died;
-}	t_monitor;
+}	t_global;
 
 int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_set_args(t_arg *args, int argc, char *argv[]);
-int		ft_set_philos(t_philo *philos, t_arg *args);
-int		ft_set_monitor(t_monitor *monitor, t_philo *philos, t_arg *args);
+int		ft_init_philos(t_arg *args, t_global *global);
+int		ft_init_global(t_arg *args, t_global *global);
+void	*ft_dining_philo(void *arg);
 void	ft_put_args(t_arg args);
+void	ft_put_message(t_philo *philo, int type);
 int		ft_put_err(const char *err);
-int		ft_destory_free(t_arg args, t_philo **philos, t_monitor *monitor);
+int		ft_destory_free(t_arg args, t_global *global);
 
+size_t	ft_get_time_msec(void);
 size_t	ft_time_get_usec(void);
-size_t	ft_time_get_msec(void);
 size_t	ft_time_diff_msec(size_t start, size_t end);
 size_t	ft_time_diff_usec(size_t start, size_t end);
-void	ft_time_usleep(size_t sleep);
+void	ft_usleep(size_t sleep);
 
 int		ft_atoi(const char *s);
 void	ft_bzero(void *s, size_t n);

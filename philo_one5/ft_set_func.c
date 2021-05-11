@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_.c                                          :+:      :+:    :+:   */
+/*   ft_set_func.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 14:35:20 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/11 19:52:42 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_set_args(t_arg *args, int argc, char *argv[])
 {
 	if (ft_check_arg(argc, argv))
 		return (1);
-	args->start_time = ft_time_get_usec();
 	args->number_of_philo = ft_atoi(argv[1]);
 	args->time_to_die = (size_t)1000 * ft_atoi(argv[2]);
 	args->time_to_eat = (size_t)1000 * ft_atoi(argv[3]);
@@ -32,43 +31,44 @@ int	ft_set_args(t_arg *args, int argc, char *argv[])
 	return (0);
 }
 
-int	ft_set_monitor(t_monitor *monitor, t_philo *philos, t_arg *args)
+int	ft_init_global(t_arg *args, t_global *global)
 {
 	int	i;
 
-	monitor->philos = philos;
-	monitor->args = args;
-	monitor->m_forks = malloc(sizeof(pthread_mutex_t) * args->number_of_philo);
-	if (monitor->m_forks == NULL)
+	global->args = args;
+	global->m_forks = malloc(sizeof(pthread_mutex_t) * args->number_of_philo);
+	if (global->m_forks == NULL)
 		return (1);
 	i = 0;
 	while (i < args->number_of_philo)
-		pthread_mutex_init(&monitor->m_forks[i++], NULL);
-	pthread_mutex_init(&monitor->m_message, NULL);
-	pthread_mutex_init(&monitor->m_died, NULL);
-	pthread_mutex_lock(&monitor->m_died);
+		pthread_mutex_init(&global->m_forks[i++], NULL);
+	pthread_mutex_init(&global->m_message, NULL);
+	pthread_mutex_init(&global->m_died, NULL);
+	pthread_mutex_lock(&global->m_died);
 	return (0);
 }
 
-int	ft_set_philos(t_philo *philos, t_arg *args)
+int	ft_init_philos(t_arg *args, t_global *global)
 {
 	int	i;
 
-	philos = malloc(sizeof(t_philo) * args->number_of_philo);
-	if (philos == NULL)
+	global->m_forks = NULL;
+	global->philos = malloc(sizeof(t_philo) * args->number_of_philo);
+	if (global->philos == NULL)
 		return (1);
 	i = 0;
 	while (i < args->number_of_philo)
 	{
-		philos[i].done = 0;
-		philos[i].pos = i;
-		philos[i].left_fork = i;
-		philos[i].right_fork = (i + 1) % args->number_of_philo;
-		philos[i].cnt = 0;
-		philos[i].args = args;
-		pthread_mutex_init(&philos[i].mutex, NULL);
-		pthread_mutex_init(&philos[i].m_eat, NULL);
-		pthread_mutex_lock(&philos[i].m_eat);
+		global->philos[i].done = 0;
+		global->philos[i].pos = i;
+		global->philos[i].left_fork = i;
+		global->philos[i].right_fork = (i + 1) % args->number_of_philo;
+		global->philos[i].cnt = 0;
+		global->philos[i].args = args;
+		global->philos[i].global = global;
+		pthread_mutex_init(&global->philos[i].mutex, NULL);
+		pthread_mutex_init(&global->philos[i].m_eat, NULL);
+		pthread_mutex_lock(&global->philos[i].m_eat);
 		i++;
 	}
 	return (0);
