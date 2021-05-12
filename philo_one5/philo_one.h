@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 19:42:51 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 20:22:49 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define THREADSLIMIT	1000
+# define THREADSLIMIT	350
 # define INTMAX			2147483647
 # define FORK			0x001
 # define EAT			0x002

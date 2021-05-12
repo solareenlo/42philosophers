@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 14:19:23 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 12:50:43 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 20:10:15 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ int	ft_put_err(const char *err)
 	return (1);
 }
 
-char	*_get_message(int type)
+void	_put_message(int type)
 {
 	if (type == FORK)
-		return (" has taken a fork");
+		printf(" has taken a fork\n");
 	else if (type == EAT)
-		return (" is eating");
+		printf("%s is eating\n%s", GREEN, RESET);
 	else if (type == SLEEP)
-		return (" is sleeping");
+		printf (" is sleeping\n");
 	else if (type == THINK)
-		return (" is thinkig");
+		printf(" is thinkig\n");
 	else if (type == DONE)
-		return ("Done!");
+		printf("%sDone!\n%s", BLUE, RESET);
 	else
-		return (" died");
+		printf("%s died\n%s", RED, RESET);
 }
 
 void	ft_put_message(t_philo *philo, int type)
@@ -57,7 +57,7 @@ void	ft_put_message(t_philo *philo, int type)
 			printf("%d", philo->pos + 1);
 		else if (type == DONE)
 			done = 1;
-		printf("%s\n", _get_message(type));
+		_put_message(type);
 	}
 	pthread_mutex_unlock(&philo->global->m_message);
 }
