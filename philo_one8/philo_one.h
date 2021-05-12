@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 02:27:07 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 02:36:29 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct s_philo
 	size_t			last_eat;
 	int				left_fork;
 	int				right_fork;
-	int				eat_count;
 	struct s_global	*global;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	m_eat;

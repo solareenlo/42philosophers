@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 02:28:30 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 02:36:24 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	_eat(t_philo *philo)
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
 	ft_put_message(philo, EAT);
 	ft_usleep(philo->global->args->time_to_eat);
-	philo->eat_count++;
 	philo->eating = 0;
 	pthread_mutex_unlock(&philo->mutex);
 	pthread_mutex_unlock(&philo->m_eat);

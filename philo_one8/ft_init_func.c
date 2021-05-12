@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 02:18:31 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 02:36:21 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	ft_init_global(t_global *global, t_arg *args)
 		global->philos[i].pos = i;
 		global->philos[i].left_fork = i;
 		global->philos[i].right_fork = (i + 1) % args->number_of_philo;
-		global->philos[i].eat_count = 0;
 		global->philos[i].global = global;
 		i++;
 	}
