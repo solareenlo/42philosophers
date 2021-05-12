@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 22:17:44 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 22:19:37 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (ft_init_philos(&global, &args))
 		return (ft_free_destroy(&global, &args)
-				&& ft_put_err("error: fatal\n"));
+			&& ft_put_err("error: fatal\n"));
 	return (0);
 }
