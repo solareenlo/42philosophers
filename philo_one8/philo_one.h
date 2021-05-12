@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 02:36:29 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 02:49:37 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ typedef struct s_arg
 typedef struct s_philo
 {
 	int				pos;
-	int				eating;
 	size_t			time_limit;
 	size_t			last_eat;
 	int				left_fork;
