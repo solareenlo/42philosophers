@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 12:50:20 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 13:03:55 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # define THINK			0x008
 # define DIED			0x010
 # define DONE			0x020
+# define RED			"\033[0;31m"
+# define GREEN			"\033[0;32m"
+# define YELLOW			"\033[0;33m"
+# define BLUE			"\033[0;34m"
+# define PURPLE			"\033[0;35m"
+# define CYAN			"\033[0;36m"
+# define RESET			"\033[0m"
 
 struct	s_global;
 

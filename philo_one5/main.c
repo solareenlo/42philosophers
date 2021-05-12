@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 03:50:49 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 12:51:16 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:58:17 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	*_monitor_cnt(void *arg)
 		}
 		sum++;
 	}
+	ft_put_message(&(global->philos[0]), DONE);
+	pthread_mutex_unlock(&global->m_died);
 	return (NULL);
 }
 
