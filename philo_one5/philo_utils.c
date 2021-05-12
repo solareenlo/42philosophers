@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 14:19:23 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 12:33:43 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:50:43 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*_get_message(int type)
 	else if (type == SLEEP)
 		return (" is sleeping");
 	else if (type == THINK)
-		return  (" is thinkig");
+		return (" is thinkig");
 	else if (type == DONE)
 		return ("Done!");
 	else

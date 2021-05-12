@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 12:49:14 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:50:20 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define DIED			0x010
 # define DONE			0x020
 
-struct s_global;
+struct	s_global;
 
 typedef struct s_arg
 {

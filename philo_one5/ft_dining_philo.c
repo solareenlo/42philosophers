@@ -6,13 +6,13 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 18:01:33 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 12:39:45 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:50:30 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-static void *_monitor_philo(void *arg)
+static void	*_monitor_philo(void *arg)
 {
 	t_philo	*philo;
 
