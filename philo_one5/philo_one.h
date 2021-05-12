@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 13:03:55 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 19:42:51 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,8 @@ size_t	ft_get_time_msec(void);
 void	ft_usleep(size_t sleep);
 
 int		ft_atoi(const char *s);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t cnt, size_t size);
 int		ft_isdigit(int c);
 int		ft_isspace(int c);
-void	*ft_memset(void *dst, int val, size_t n);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
