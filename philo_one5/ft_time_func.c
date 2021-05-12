@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 09:30:00 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 12:47:01 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 19:26:27 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_usleep(size_t sleep)
 {
 	size_t	stop;
 
-	stop = ft_get_time_usec() + sleep;
-	while (ft_get_time_usec() < stop)
+	stop = ft_get_time_msec() + sleep;
+	while (ft_get_time_msec() < stop)
 		usleep(100);
 }
