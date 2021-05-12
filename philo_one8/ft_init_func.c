@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 02:49:55 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 04:45:09 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	_init_mutex(t_global *global, t_arg args)
 	i = 0;
 	while (i < args.number_of_philo)
 	{
-		pthread_mutex_init(&global->philos[i].mutex, NULL);
+		pthread_mutex_init(&global->philos[i].m_limit_time, NULL);
 		pthread_mutex_init(&global->philos[i].m_eat, NULL);
 		pthread_mutex_lock(&global->philos[i].m_eat);
 		pthread_mutex_init(&global->m_forks[i], NULL);

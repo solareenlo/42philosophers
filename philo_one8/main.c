@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 02:53:57 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 04:44:45 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	_start_thread(t_global *global)
 		pthread_create(&thread, NULL, ft_dining_philos,
 			(void *)&(global->philos[i]));
 		pthread_detach(thread);
-		ft_usleep(100);
+		usleep(100);
 		i++;
 	}
 	return (0);
@@ -68,6 +68,8 @@ int	main(int argc, char *argv[])
 		return (ft_destroy_free(&global, args)
 			&& ft_put_err("error: fatal\n"));
 	pthread_mutex_lock(&global.m_done);
+	pthread_mutex_lock(&global.m_message);
+	pthread_mutex_unlock(&global.m_message);
 	pthread_mutex_unlock(&global.m_done);
 	ft_destroy_free(&global, args);
 	return (0);

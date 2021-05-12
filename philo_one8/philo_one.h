@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 02:49:37 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 04:45:02 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_philo
 	int				left_fork;
 	int				right_fork;
 	struct s_global	*global;
-	pthread_mutex_t	mutex;
+	pthread_mutex_t	m_limit_time;
 	pthread_mutex_t	m_eat;
 }	t_philo;
 
