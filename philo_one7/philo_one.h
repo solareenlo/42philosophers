@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 22:18:21 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 22:40:48 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,13 @@ typedef struct s_global
 int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_init_args(t_arg *args, int argc, char *argv[]);
-int		ft_init_philos(t_global *global, t_arg *args);
-int		ft_free_destroy(t_global *global, t_arg *args);
+int		ft_init_philos(t_global *global, t_arg args);
+int		ft_free_destroy(t_global *global, t_arg args);
 int		ft_put_err(const char *err);
+
+size_t	ft_get_time_usec(void);
+size_t	ft_get_time_msec(void);
+void	ft_usleep(size_t sleep);
 
 size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd);

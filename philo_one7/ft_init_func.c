@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 22:04:39 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 22:40:35 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ int	ft_init_args(t_arg *args, int argc, char *argv[])
 	return (0);
 }
 
-int	ft_init_philos(t_global *global, t_arg *args)
+int	ft_init_philos(t_global *global, t_arg args)
 {
 	int	i;
 
-	global->philos = malloc(sizeof(t_philo) * args->number_of_philo);
+	global->philos = malloc(sizeof(t_philo) * args.number_of_philo);
 	if (global->philos == NULL)
 		return (1);
-	global->m_forks = malloc(sizeof(pthread_mutex_t) * args->number_of_philo);
+	global->m_forks = malloc(sizeof(pthread_mutex_t) * args.number_of_philo);
 	if (global->m_forks == NULL)
 		return (1);
 	pthread_mutex_init(&global->m_message, NULL);
 	pthread_mutex_init(&global->m_picking, NULL);
 	i = 0;
-	while (i < args->number_of_philo)
+	while (i < args.number_of_philo)
 	{
 		pthread_mutex_init(&global->m_forks[i], NULL);
 		pthread_mutex_init(&global->philos[i].m_eating, NULL);

@@ -6,13 +6,13 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 22:08:26 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 22:18:10 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 22:41:02 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	ft_free_destroy(t_global *global, t_arg *args)
+int	ft_free_destroy(t_global *global, t_arg args)
 {
 	int	i;
 
@@ -24,14 +24,14 @@ int	ft_free_destroy(t_global *global, t_arg *args)
 	if (global->philos != NULL)
 	{
 		i = 0;
-		while (i < args->number_of_philo)
+		while (i < args.number_of_philo)
 			pthread_mutex_destroy(&global->philos[i++].m_eating);
 		free(global->philos);
 	}
 	if (global->m_forks != NULL)
 	{
 		i = 0;
-		while (i < args->number_of_philo)
+		while (i < args.number_of_philo)
 			pthread_mutex_destroy(&global->m_forks[i++]);
 		free(global->m_forks);
 	}
