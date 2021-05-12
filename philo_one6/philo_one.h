@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 21:38:46 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 23:31:34 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ typedef struct s_arg
 int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_init_args(t_arg *args, int argc, char *argv[]);
+
+size_t	ft_get_time_usec(void);
+size_t	ft_get_time_msec(void);
+void	ft_usleep(size_t sleep);
 
 size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd);
