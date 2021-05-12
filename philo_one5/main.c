@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 03:50:49 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 20:03:58 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:30:57 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char *argv[])
 	t_arg		args;
 	t_global	global;
 
-	if (ft_set_args(&args, argc, argv))
+	if (ft_init_args(&args, argc, argv))
 		return (1);
 	global.m_forks = NULL;
 	if (ft_init_philos(&args, &global))

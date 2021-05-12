@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_func.c                                      :+:      :+:    :+:   */
+/*   ft_init_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 19:52:42 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:38:35 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	ft_set_args(t_arg *args, int argc, char *argv[])
+int	ft_init_args(t_arg *args, int argc, char *argv[])
 {
 	if (ft_check_arg(argc, argv))
 		return (1);
 	args->number_of_philo = ft_atoi(argv[1]);
-	args->time_to_die = (size_t)1000 * ft_atoi(argv[2]);
-	args->time_to_eat = (size_t)1000 * ft_atoi(argv[3]);
-	args->time_to_sleep = (size_t)1000 * ft_atoi(argv[4]);
+	args->time_to_die = ft_atoi(argv[2]);
+	args->time_to_eat = ft_atoi(argv[3]);
+	args->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 	{
 		args->number_of_times_each_philo_must_eat = ft_atoi(argv[5]);

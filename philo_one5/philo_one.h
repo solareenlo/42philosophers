@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 03:07:43 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 19:55:23 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:49:14 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_global
 
 int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
-int		ft_set_args(t_arg *args, int argc, char *argv[]);
+int		ft_init_args(t_arg *args, int argc, char *argv[]);
 int		ft_init_philos(t_arg *args, t_global *global);
 int		ft_init_global(t_arg *args, t_global *global);
 void	*ft_dining_philo(void *arg);
@@ -76,10 +76,8 @@ void	ft_put_message(t_philo *philo, int type);
 int		ft_put_err(const char *err);
 int		ft_destory_free(t_arg args, t_global *global);
 
+size_t	ft_get_time_usec(void);
 size_t	ft_get_time_msec(void);
-size_t	ft_time_get_usec(void);
-size_t	ft_time_diff_msec(size_t start, size_t end);
-size_t	ft_time_diff_usec(size_t start, size_t end);
 void	ft_usleep(size_t sleep);
 
 int		ft_atoi(const char *s);
@@ -89,7 +87,6 @@ int		ft_isdigit(int c);
 int		ft_isspace(int c);
 void	*ft_memset(void *dst, int val, size_t n);
 void	ft_putchar_fd(char c, int fd);
-int		ft_puterr_malloc(void);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *s);

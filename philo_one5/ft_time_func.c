@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_time_.c                                         :+:      :+:    :+:   */
+/*   ft_time_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 09:30:00 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 16:56:30 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:47:01 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-size_t	ft_time_get_usec(void)
+size_t	ft_get_time_usec(void)
 {
 	struct timeval	tv;
 	size_t			res;
@@ -24,27 +24,23 @@ size_t	ft_time_get_usec(void)
 	return (res);
 }
 
-size_t	ft_time_diff_msec(size_t start, size_t end)
+size_t	ft_get_time_msec(void)
 {
-	size_t	res;
+	struct timeval	tv;
+	size_t			res;
 
-	res = (end - start) / 1000;
-	return (res);
-}
-
-size_t	ft_time_diff_usec(size_t start, size_t end)
-{
-	size_t	res;
-
-	res = (end - start);
-	return (res);
+	gettimeofday(&tv, NULL);
+	res = 0;
+	res += tv.tv_sec * 1000000;
+	res += tv.tv_usec;
+	return (res / 1000);
 }
 
 void	ft_usleep(size_t sleep)
 {
 	size_t	stop;
 
-	stop = ft_time_get_usec() + sleep;
-	while (ft_time_get_usec() < stop)
+	stop = ft_get_time_usec() + sleep;
+	while (ft_get_time_usec() < stop)
 		usleep(100);
 }

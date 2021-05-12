@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 14:19:23 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 18:29:34 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:33:43 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,6 @@ int	ft_put_err(const char *err)
 	if (err)
 		write(2, err, ft_strlen(err));
 	return (1);
-}
-
-size_t	ft_get_time_msec(void)
-{
-	struct timeval	tv;
-	size_t			res;
-
-	gettimeofday(&tv, NULL);
-	res = 0;
-	res += tv.tv_sec * 1000000;
-	res += tv.tv_usec;
-	return (res / 1000);
 }
 
 char	*_get_message(int type)
@@ -72,4 +60,31 @@ void	ft_put_message(t_philo *philo, int type)
 		printf("%s\n", _get_message(type));
 	}
 	pthread_mutex_unlock(&philo->global->m_message);
+}
+
+int	ft_destory_free(t_arg args, t_global *global)
+{
+	int	i;
+
+	if (global->philos != NULL)
+	{
+		i = 0;
+		while (i < args.number_of_philo)
+		{
+			pthread_mutex_destroy(&global->philos[i].mutex);
+			pthread_mutex_destroy(&global->philos[i].m_eat);
+			i++;
+		}
+		free(global->philos);
+	}
+	if (global->m_forks != NULL)
+	{
+		i = 0;
+		while (i < args.number_of_philo)
+			pthread_mutex_destroy(&global->m_forks[i++]);
+		free(global->m_forks);
+		pthread_mutex_destroy(&global->m_message);
+		pthread_mutex_destroy(&global->m_died);
+	}
+	return (1);
 }

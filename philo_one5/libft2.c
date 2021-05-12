@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 12:17:11 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 12:17:58 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 12:49:09 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@ void	ft_putchar_fd(char c, int fd)
 	if (!c || fd < 0)
 		return ;
 	write(fd, &c, 1);
-}
-
-int	ft_puterr_malloc(void)
-{
-	ft_putstr_fd("Error: malloc failed\n", 2);
-	return (1);
 }
 
 void	ft_putnbr_fd(int n, int fd)
