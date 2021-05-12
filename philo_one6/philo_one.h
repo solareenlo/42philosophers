@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 21:35:41 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/12 21:38:46 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # define PURPLE			"\033[0;35m"
 # define CYAN			"\033[0;36m"
 # define RESET			"\033[0m"
-
 
 typedef struct s_arg
 {
