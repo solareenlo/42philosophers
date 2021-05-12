@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 04:44:45 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 05:03:39 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	main(int argc, char *argv[])
 {
 	t_arg		args;
 	t_global	global;
+	int			i;
 
 	if (ft_init_args(&args, argc, argv))
 		return (1);
@@ -70,6 +71,13 @@ int	main(int argc, char *argv[])
 	pthread_mutex_lock(&global.m_done);
 	pthread_mutex_lock(&global.m_message);
 	pthread_mutex_unlock(&global.m_message);
+	i = 0;
+	while (i < args.number_of_philo)
+	{
+		/* pthread_mutex_lock(&global.philos[i].m_limit_time); */
+		/* pthread_mutex_unlock(&global.philos[i].m_limit_time); */
+		i++;
+	}
 	pthread_mutex_unlock(&global.m_done);
 	ft_destroy_free(&global, args);
 	return (0);
