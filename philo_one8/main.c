@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 05:03:39 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/13 22:07:22 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	_start_thread(t_global *global)
 		pthread_create(&thread, NULL, ft_dining_philos,
 			(void *)&(global->philos[i]));
 		pthread_detach(thread);
-		usleep(100);
+		usleep(NEXTTHREAD);
 		i++;
 	}
 	return (0);
@@ -59,7 +59,6 @@ int	main(int argc, char *argv[])
 {
 	t_arg		args;
 	t_global	global;
-	int			i;
 
 	if (ft_init_args(&args, argc, argv))
 		return (1);
@@ -69,15 +68,6 @@ int	main(int argc, char *argv[])
 		return (ft_destroy_free(&global, args)
 			&& ft_put_err("error: fatal\n"));
 	pthread_mutex_lock(&global.m_done);
-	pthread_mutex_lock(&global.m_message);
-	pthread_mutex_unlock(&global.m_message);
-	i = 0;
-	while (i < args.number_of_philo)
-	{
-		/* pthread_mutex_lock(&global.philos[i].m_limit_time); */
-		/* pthread_mutex_unlock(&global.philos[i].m_limit_time); */
-		i++;
-	}
 	pthread_mutex_unlock(&global.m_done);
 	ft_destroy_free(&global, args);
 	return (0);
