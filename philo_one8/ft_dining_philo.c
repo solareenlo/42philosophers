@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dining_philos.c                                 :+:      :+:    :+:   */
+/*   ft_dining_philo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 13:18:58 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 15:07:22 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,16 @@ static void	*_monitor_philo(void *arg)
 			pthread_mutex_lock(&philo->m_status);
 			philo->status = DEAD;
 			pthread_mutex_unlock(&philo->m_status);
+			pthread_mutex_lock(&philo->global->m_someone_is_deat);
+			philo->global->someone_is_dead = 1;
+			pthread_mutex_unlock(&philo->global->m_someone_is_deat);
 			ft_put_message(philo, DIED);
 			pthread_mutex_unlock(&philo->m_limit_time);
 			pthread_mutex_unlock(&philo->global->m_done);
 			return (NULL);
 		}
 		pthread_mutex_unlock(&philo->m_limit_time);
-		usleep(NEXTTHREAD * philo->global->args->number_of_philo);
+		usleep(100);
 	}
 	return (NULL);
 }
@@ -79,8 +82,6 @@ void	*ft_dining_philo(void *arg)
 	pthread_t	thread;
 
 	philo = (t_philo *)arg;
-	if (philo->pos % 2)
-		usleep(NEXTTHREAD);
 	pthread_mutex_lock(&philo->m_limit_time);
 	philo->last_eat = ft_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
