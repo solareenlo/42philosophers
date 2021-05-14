@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 15:57:31 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 23:21:22 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,30 @@ void	*ft_dining_philo(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->m_status);
+		pthread_mutex_lock(&philo->global->m_someone_is_deat);
+		if (philo->global->someone_is_dead == 1)
+			return (NULL);
+		pthread_mutex_unlock(&philo->global->m_someone_is_deat);
 		_forks(philo);
+		pthread_mutex_lock(&philo->global->m_someone_is_deat);
+		if (philo->global->someone_is_dead == 1)
+			return (NULL);
+		pthread_mutex_unlock(&philo->global->m_someone_is_deat);
 		_eat(philo);
+		pthread_mutex_lock(&philo->global->m_someone_is_deat);
+		if (philo->global->someone_is_dead == 1)
+			return (NULL);
+		pthread_mutex_unlock(&philo->global->m_someone_is_deat);
 		_sleep(philo);
+		pthread_mutex_lock(&philo->global->m_someone_is_deat);
+		if (philo->global->someone_is_dead == 1)
+			return (NULL);
+		pthread_mutex_unlock(&philo->global->m_someone_is_deat);
 		ft_put_message(philo, THINK);
+		pthread_mutex_lock(&philo->global->m_someone_is_deat);
+		if (philo->global->someone_is_dead == 1)
+			return (NULL);
+		pthread_mutex_unlock(&philo->global->m_someone_is_deat);
 	}
 	return (NULL);
 }
