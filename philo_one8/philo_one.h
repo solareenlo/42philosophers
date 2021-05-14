@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 21:51:56 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 10:13:58 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #  include <unistd.h>
 # endif
 
-# define THREADSLIMIT	300
+# define THREADSLIMIT	200
 # define NEXTTHREAD		100
 # define INTMAX			2147483647
 # define FORK			0x001
@@ -51,6 +51,12 @@ typedef struct s_arg
 	int		number_of_times_each_philo_must_eat;
 }	t_arg;
 
+typedef enum e_status {
+	ALIVE,
+	DEAD,
+	FULL
+}	t_status;
+
 typedef struct s_philo
 {
 	int				pos;
@@ -58,6 +64,7 @@ typedef struct s_philo
 	size_t			last_eat;
 	int				left_fork;
 	int				right_fork;
+	t_status		status;
 	struct s_global	*global;
 	pthread_mutex_t	m_limit_time;
 	pthread_mutex_t	m_eat;
@@ -68,16 +75,20 @@ typedef struct s_global
 	size_t			start_time;
 	t_arg			*args;
 	t_philo			*philos;
+	int				someone_is_dead;
+	int				total;
 	pthread_mutex_t	*m_forks;
 	pthread_mutex_t	m_message;
 	pthread_mutex_t	m_done;
+	pthread_mutex_t	m_total;
+	pthread_mutex_t	m_someone_is_dead;
 }	t_global;
 
 int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_init_args(t_arg *args, int argc, char *argv[]);
 int		ft_init_global(t_global *global, t_arg *args);
-void	*ft_dining_philos(void *arg);
+void	*ft_dining_philo(void *arg);
 int		ft_destroy_free(t_global *global, t_arg args);
 int		ft_put_err(const char *err);
 void	ft_put_message(t_philo *philo, int type);

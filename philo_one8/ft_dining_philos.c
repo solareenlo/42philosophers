@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 21:58:04 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 10:19:56 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	*_monitor_philo(void *arg)
 			return (NULL);
 		}
 		pthread_mutex_unlock(&philo->m_limit_time);
-		/* usleep(1000); */
 		usleep(NEXTTHREAD * philo->global->args->number_of_philo);
 	}
 	return (NULL);
@@ -61,19 +60,21 @@ static void	_sleep(t_philo *philo)
 	ft_usleep(philo->global->args->time_to_sleep);
 }
 
-void	*ft_dining_philos(void *arg)
+void	*ft_dining_philo(void *arg)
 {
 	t_philo		*philo;
 	pthread_t	thread;
 
 	philo = (t_philo *)arg;
+	if (philo->pos % 2)
+		usleep(NEXTTHREAD);
 	pthread_mutex_lock(&philo->m_limit_time);
 	philo->last_eat = ft_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
 	pthread_mutex_unlock(&philo->m_limit_time);
 	pthread_create(&thread, NULL, _monitor_philo, (void *)philo);
 	pthread_detach(thread);
-	while (42)
+	while (philo->status == ALIVE)
 	{
 		_take_forks(philo);
 		_eat(philo);

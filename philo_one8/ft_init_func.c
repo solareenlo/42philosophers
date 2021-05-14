@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 20:29:20 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 10:15:31 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	_init_mutex(t_global *global, t_arg args)
 	pthread_mutex_init(&global->m_message, NULL);
 	pthread_mutex_init(&global->m_done, NULL);
 	pthread_mutex_lock(&global->m_done);
+	pthread_mutex_init(&global->m_total, NULL);
+	pthread_mutex_init(&global->m_someone_is_dead, NULL);
 	i = 0;
 	while (i < args.number_of_philo)
 	{
@@ -64,12 +66,15 @@ int	ft_init_global(t_global *global, t_arg *args)
 		free(global->philos);
 		return (1);
 	}
+	global->someone_is_dead = 0;
+	global->total = 0;
 	i = 0;
 	while (i < args->number_of_philo)
 	{
 		global->philos[i].pos = i;
 		global->philos[i].left_fork = i;
 		global->philos[i].right_fork = (i + 1) % args->number_of_philo;
+		global->philos[i].status = ALIVE;
 		global->philos[i].global = global;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 22:07:22 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 10:08:32 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ static void	*_monitor_count(void *arg)
 {
 	t_global	*global;
 	int			i;
-	int			total;
 
 	global = (t_global *)arg;
-	total = 0;
-	while (total < global->args->number_of_times_each_philo_must_eat)
+	while (global->total < global->args->number_of_times_each_philo_must_eat)
 	{
 		i = 0;
 		while (i < global->args->number_of_philo)
 			pthread_mutex_lock(&global->philos[i++].m_eat);
-		total++;
+		pthread_mutex_lock(&global->m_total);
+		global->total++;
+		pthread_mutex_unlock(&global->m_total);
 	}
 	ft_put_message(&global->philos[0], DONE);
 	pthread_mutex_unlock(&global->m_done);
@@ -46,7 +46,7 @@ static int	_start_thread(t_global *global)
 	i = 0;
 	while (i < global->args->number_of_philo)
 	{
-		pthread_create(&thread, NULL, ft_dining_philos,
+		pthread_create(&thread, NULL, ft_dining_philo,
 			(void *)&(global->philos[i]));
 		pthread_detach(thread);
 		usleep(NEXTTHREAD);
@@ -68,6 +68,8 @@ int	main(int argc, char *argv[])
 		return (ft_destroy_free(&global, args)
 			&& ft_put_err("error: fatal\n"));
 	pthread_mutex_lock(&global.m_done);
+	pthread_mutex_lock(&global.m_message);
+	pthread_mutex_unlock(&global.m_message);
 	pthread_mutex_unlock(&global.m_done);
 	ft_destroy_free(&global, args);
 	return (0);
