@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 15:07:22 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 15:37:48 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void	*_monitor_philo(void *arg)
 			return (NULL);
 		}
 		pthread_mutex_unlock(&philo->m_limit_time);
-		usleep(100);
+		usleep(NEXTTHREAD);
 	}
 	return (NULL);
 }
 
-static void	_take_forks(t_philo *philo)
+static void	_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->global->m_forks[philo->left_fork]);
 	ft_put_message(philo, FORK);
@@ -97,7 +97,7 @@ void	*ft_dining_philo(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->m_status);
-		_take_forks(philo);
+		_forks(philo);
 		_eat(philo);
 		_sleep(philo);
 		ft_put_message(philo, THINK);
