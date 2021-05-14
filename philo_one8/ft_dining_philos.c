@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 10:19:56 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 13:18:58 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,19 @@ static void	*_monitor_philo(void *arg)
 	philo = (t_philo *)arg;
 	while (42)
 	{
+		pthread_mutex_lock(&philo->m_status);
+		if (philo->status != ALIVE)
+		{
+			pthread_mutex_unlock(&philo->m_status);
+			return (NULL);
+		}
+		pthread_mutex_unlock(&philo->m_status);
 		pthread_mutex_lock(&philo->m_limit_time);
 		if (ft_get_time_usec() > philo->time_limit)
 		{
+			pthread_mutex_lock(&philo->m_status);
+			philo->status = DEAD;
+			pthread_mutex_unlock(&philo->m_status);
 			ft_put_message(philo, DIED);
 			pthread_mutex_unlock(&philo->m_limit_time);
 			pthread_mutex_unlock(&philo->global->m_done);
@@ -46,7 +56,10 @@ static void	_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->m_limit_time);
 	philo->last_eat = ft_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
+	pthread_mutex_lock(&philo->m_eat_cnt);
+	philo->eat_cnt++;
 	ft_put_message(philo, EAT);
+	pthread_mutex_unlock(&philo->m_eat_cnt);
 	pthread_mutex_unlock(&philo->m_limit_time);
 	ft_usleep(philo->global->args->time_to_eat);
 	pthread_mutex_unlock(&philo->m_eat);
@@ -74,8 +87,15 @@ void	*ft_dining_philo(void *arg)
 	pthread_mutex_unlock(&philo->m_limit_time);
 	pthread_create(&thread, NULL, _monitor_philo, (void *)philo);
 	pthread_detach(thread);
-	while (philo->status == ALIVE)
+	while (42)
 	{
+		pthread_mutex_lock(&philo->m_status);
+		if (philo->status != ALIVE)
+		{
+			pthread_mutex_unlock(&philo->m_status);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->m_status);
 		_take_forks(philo);
 		_eat(philo);
 		_sleep(philo);

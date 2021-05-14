@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 10:13:58 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 13:17:52 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,13 @@ typedef struct s_philo
 	size_t			last_eat;
 	int				left_fork;
 	int				right_fork;
+	int				eat_cnt;
 	t_status		status;
 	struct s_global	*global;
 	pthread_mutex_t	m_limit_time;
 	pthread_mutex_t	m_eat;
+	pthread_mutex_t	m_eat_cnt;
+	pthread_mutex_t	m_status;
 }	t_philo;
 
 typedef struct s_global
@@ -75,13 +78,9 @@ typedef struct s_global
 	size_t			start_time;
 	t_arg			*args;
 	t_philo			*philos;
-	int				someone_is_dead;
-	int				total;
 	pthread_mutex_t	*m_forks;
 	pthread_mutex_t	m_message;
 	pthread_mutex_t	m_done;
-	pthread_mutex_t	m_total;
-	pthread_mutex_t	m_someone_is_dead;
 }	t_global;
 
 int		ft_check_arg(int argc, char *argv[]);

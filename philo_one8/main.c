@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 10:08:32 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 13:45:04 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,27 @@ static void	*_monitor_count(void *arg)
 {
 	t_global	*global;
 	int			i;
+	int			cnt;
 
 	global = (t_global *)arg;
-	while (global->total < global->args->number_of_times_each_philo_must_eat)
+	cnt = 0;
+	while (cnt != global->args->number_of_philo)
 	{
 		i = 0;
 		while (i < global->args->number_of_philo)
-			pthread_mutex_lock(&global->philos[i++].m_eat);
-		pthread_mutex_lock(&global->m_total);
-		global->total++;
-		pthread_mutex_unlock(&global->m_total);
+		{
+			pthread_mutex_lock(&global->philos[i].m_eat_cnt);
+			if (global->philos[i].eat_cnt >= global->args->number_of_times_each_philo_must_eat)
+			{
+				pthread_mutex_lock(&global->philos[i].m_status);
+				global->philos[i].status = FULL;
+				pthread_mutex_unlock(&global->philos[i].m_status);
+				cnt++;
+				global->philos[i].eat_cnt = -INTMAX;
+			}
+			pthread_mutex_unlock(&global->philos[i].m_eat_cnt);
+			i++;
+		}
 	}
 	ft_put_message(&global->philos[0], DONE);
 	pthread_mutex_unlock(&global->m_done);
@@ -68,8 +79,7 @@ int	main(int argc, char *argv[])
 		return (ft_destroy_free(&global, args)
 			&& ft_put_err("error: fatal\n"));
 	pthread_mutex_lock(&global.m_done);
-	pthread_mutex_lock(&global.m_message);
-	pthread_mutex_unlock(&global.m_message);
+	usleep(1000 * args.number_of_philo);
 	pthread_mutex_unlock(&global.m_done);
 	ft_destroy_free(&global, args);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 23:40:58 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 09:59:26 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 13:18:06 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	ft_destroy_free(t_global *global, t_arg args)
 	pthread_mutex_lock(&global->m_message);
 	pthread_mutex_destroy(&global->m_message);
 	pthread_mutex_destroy(&global->m_done);
-	pthread_mutex_destroy(&global->m_total);
-	pthread_mutex_destroy(&global->m_someone_is_dead);
 	i = 0;
 	while (i < args.number_of_philo)
 	{
 		pthread_mutex_destroy(&global->m_forks[i]);
 		pthread_mutex_destroy(&global->philos[i].m_limit_time);
 		pthread_mutex_destroy(&global->philos[i].m_eat);
+		pthread_mutex_destroy(&global->philos[i].m_eat_cnt);
+		pthread_mutex_destroy(&global->philos[i].m_status);
 		i++;
 	}
 	free(global->philos);
