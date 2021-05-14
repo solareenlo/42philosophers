@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 15:37:42 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 18:53:23 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		ft_check_int(char *argv);
 int		ft_init_args(t_arg *args, int argc, char *argv[]);
 int		ft_init_global(t_global *global, t_arg *args);
 void	*ft_dining_philo(void *arg);
+void	*ft_monitor_philo(void *arg);
 int		ft_destroy_free(t_global *global, t_arg args);
 int		ft_put_err(const char *err);
 void	ft_put_message(t_philo *philo, int type);

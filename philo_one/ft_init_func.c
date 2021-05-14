@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 13:59:03 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/14 18:46:42 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_init_args(t_arg *args, int argc, char *argv[])
 	return (0);
 }
 
-int	_init_mutex(t_global *global, t_arg args)
+static int	_init_mutex(t_global *global, t_arg args)
 {
 	int	i;
 
@@ -53,21 +53,10 @@ int	_init_mutex(t_global *global, t_arg args)
 	return (0);
 }
 
-int	ft_init_global(t_global *global, t_arg *args)
+static void	_init_philos(t_global *global, t_arg *args)
 {
 	int	i;
 
-	global->args = args;
-	global->philos = malloc(sizeof(t_philo) * args->number_of_philo);
-	if (global->philos == NULL)
-		return (1);
-	global->m_forks = malloc(sizeof(pthread_mutex_t) * args->number_of_philo);
-	if (global->m_forks == NULL)
-	{
-		free(global->philos);
-		return (1);
-	}
-	global->someone_is_dead = 0;
 	i = 0;
 	while (i < args->number_of_philo)
 	{
@@ -79,6 +68,22 @@ int	ft_init_global(t_global *global, t_arg *args)
 		global->philos[i].global = global;
 		i++;
 	}
+}
+
+int	ft_init_global(t_global *global, t_arg *args)
+{
+	global->args = args;
+	global->philos = malloc(sizeof(t_philo) * args->number_of_philo);
+	if (global->philos == NULL)
+		return (1);
+	global->m_forks = malloc(sizeof(pthread_mutex_t) * args->number_of_philo);
+	if (global->m_forks == NULL)
+	{
+		free(global->philos);
+		return (1);
+	}
+	global->someone_is_dead = 0;
+	_init_philos(global, args);
 	_init_mutex(global, *args);
 	return (0);
 }
