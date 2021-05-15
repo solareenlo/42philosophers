@@ -6,13 +6,13 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 23:36:21 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/15 19:44:30 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-static void	_full(t_global *global, int *cnt)
+static void	_is_full(t_global *global, int *cnt)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ static void	_full(t_global *global, int *cnt)
 	}
 }
 
-static void	*_monitor_eat_cnt(void *arg)
+static void	*_thread_monitor_eat_cnt(void *arg)
 {
 	t_global	*global;
 	int			cnt;
@@ -49,14 +49,14 @@ static void	*_monitor_eat_cnt(void *arg)
 		pthread_mutex_unlock(&global->m_someone_is_deat);
 		if (cnt == global->args->number_of_philo)
 			break ;
-		_full(global, &cnt);
+		_is_full(global, &cnt);
 	}
 	ft_put_message(&global->philos[0], DONE);
 	pthread_mutex_unlock(&global->m_done);
 	return (NULL);
 }
 
-static int	_start_thread(t_global *global)
+static int	_thread_start(t_global *global)
 {
 	int			i;
 	pthread_t	thread;
@@ -64,13 +64,13 @@ static int	_start_thread(t_global *global)
 	global->start_time = ft_get_time_msec();
 	if (global->args->number_of_times_each_philo_must_eat > 0)
 	{
-		pthread_create(&thread, NULL, _monitor_eat_cnt, (void *)global);
+		pthread_create(&thread, NULL, _thread_monitor_eat_cnt, (void *)global);
 		pthread_detach(thread);
 	}
 	i = 0;
 	while (i < global->args->number_of_philo)
 	{
-		pthread_create(&thread, NULL, ft_dining_philo,
+		pthread_create(&thread, NULL, thread_dining_philo,
 			(void *)&(global->philos[i]));
 		pthread_detach(thread);
 		usleep(NEXTTHREAD);
@@ -88,7 +88,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (ft_init_global(&global, &args))
 		return (ft_put_err("error: fatal\n"));
-	if (_start_thread(&global))
+	if (_thread_start(&global))
 		return (ft_destroy_free(&global, args)
 			&& ft_put_err("error: fatal\n"));
 	pthread_mutex_lock(&global.m_done);

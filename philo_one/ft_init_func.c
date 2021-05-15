@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/14 23:35:12 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/15 19:43:11 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ static void	_init_philos(t_global *global, t_arg *args)
 	while (i < args->number_of_philo)
 	{
 		global->philos[i].pos = i;
-		global->philos[i].left_fork = i;
-		global->philos[i].right_fork = (i + 1) % args->number_of_philo;
-		/* global->philos[i].left_fork = (i + i % 2) % args->number_of_philo; */
-		/* global->philos[i].right_fork = (i + !(i % 2)) % args->number_of_philo; */
+		/* global->philos[i].left_fork = i; */
+		/* global->philos[i].right_fork = (i + 1) % args->number_of_philo; */
+		global->philos[i].left_fork = (i + i % 2) % args->number_of_philo;
+		global->philos[i].right_fork = (i + !(i % 2)) % args->number_of_philo;
 		global->philos[i].eat_cnt = 0;
 		global->philos[i].status = ALIVE;
 		global->philos[i].global = global;
