@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 23:40:58 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 14:20:34 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:54:43 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_destroy_free(t_global *global, t_arg args)
 	{
 		pthread_mutex_destroy(&global->m_forks[i]);
 		pthread_mutex_destroy(&global->philos[i].m_time_limit);
-		pthread_mutex_destroy(&global->philos[i].m_eat);
 		pthread_mutex_destroy(&global->philos[i].m_eat_cnt);
 		i++;
 	}

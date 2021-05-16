@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 14:14:50 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:54:38 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # endif
 
 # define THREADSLIMIT	200
-# define NEXTTHREAD		100
 # define INTMAX			2147483647
 # define FORK			0x001
 # define EAT			0x002
@@ -61,7 +60,6 @@ typedef struct s_philo
 	int				eat_cnt;
 	struct s_global	*global;
 	pthread_mutex_t	m_time_limit;
-	pthread_mutex_t	m_eat;
 	pthread_mutex_t	m_eat_cnt;
 }	t_philo;
 

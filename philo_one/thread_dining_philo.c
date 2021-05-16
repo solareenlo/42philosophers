@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 14:40:30 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:54:47 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void	*_eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->m_eat_cnt);
 	pthread_mutex_unlock(&philo->m_time_limit);
 	ft_usleep(philo->global->args->time_to_eat);
-	pthread_mutex_unlock(&philo->m_eat);
 	return (philo);
 }
 
