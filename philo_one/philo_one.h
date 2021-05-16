@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 01:21:22 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:36:16 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,20 @@ typedef struct s_global
 	pthread_mutex_t	m_done;
 }	t_global;
 
-int		ft_check_arg(int argc, char *argv[]);
-int		ft_check_int(char *argv);
-int		ft_init_args(t_arg *args, int argc, char *argv[]);
-int		ft_init_global(t_global *global, t_arg *args);
+int		ph_check_arg(int argc, char *argv[]);
+int		ph_check_int(char *argv);
+int		ph_init_args(t_arg *args, int argc, char *argv[]);
+int		ph_init_global(t_global *global, t_arg *args);
 void	*thread_dining_philo(void *arg);
 void	*thread_monitor_deadh(void *arg);
 void	*thread_monitor_eat_cnt(void *arg);
-int		ft_destroy_free(t_global *global, t_arg args);
-int		ft_put_err(const char *err);
-void	ft_put_message(t_philo *philo, int type);
+int		ph_destroy_free(t_global *global, t_arg args);
+int		ph_put_err(const char *err);
+void	ph_put_message(t_philo *philo, int type);
 
-size_t	ft_get_time_usec(void);
-size_t	ft_get_time_msec(void);
-void	ft_usleep(size_t sleep);
+size_t	ph_get_time_usec(void);
+size_t	ph_get_time_msec(void);
+void	ph_usleep(size_t sleep);
 
 size_t	ft_strlen(const char *s);
 void	ft_putchar_fd(char c, int fd);

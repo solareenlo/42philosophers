@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   ph_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 23:40:58 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 14:54:43 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:30:59 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	ft_destroy_free(t_global *global, t_arg args)
+int	ph_destroy_free(t_global *global, t_arg args)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ int	ft_destroy_free(t_global *global, t_arg args)
 	return (1);
 }
 
-int	ft_put_err(const char *err)
+int	ph_put_err(const char *err)
 {
 	if (err)
 		write(2, err, ft_strlen(err));
@@ -55,14 +55,14 @@ void	_put_message(int type)
 		printf("%sDone!\n%s", BLUE, RESET);
 }
 
-void	ft_put_message(t_philo *philo, int type)
+void	ph_put_message(t_philo *philo, int type)
 {
 	static int	done = 0;
 
 	pthread_mutex_lock(&philo->global->m_message);
 	if (done == 0)
 	{
-		printf("%ld\t", ft_get_time_msec() - philo->global->start_time);
+		printf("%ld\t", ph_get_time_msec() - philo->global->start_time);
 		if (type != DONE)
 			printf("%d", philo->pos + 1);
 		_put_message(type);

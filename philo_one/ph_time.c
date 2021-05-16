@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_time_func.c                                     :+:      :+:    :+:   */
+/*   ph_time_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 09:30:00 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/13 20:27:50 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:31:51 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-size_t	ft_get_time_usec(void)
+size_t	ph_get_time_usec(void)
 {
 	struct timeval	tv;
 	size_t			res;
@@ -24,7 +24,7 @@ size_t	ft_get_time_usec(void)
 	return (res);
 }
 
-size_t	ft_get_time_msec(void)
+size_t	ph_get_time_msec(void)
 {
 	struct timeval	tv;
 	size_t			res;
@@ -36,11 +36,11 @@ size_t	ft_get_time_msec(void)
 	return (res);
 }
 
-void	ft_usleep(size_t sleep)
+void	ph_usleep(size_t sleep)
 {
 	size_t	stop;
 
-	stop = ft_get_time_usec() + sleep;
-	while (ft_get_time_usec() < stop)
+	stop = ph_get_time_usec() + sleep;
+	while (ph_get_time_usec() < stop)
 		usleep(100);
 }

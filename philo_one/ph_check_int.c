@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_int.c                                     :+:      :+:    :+:   */
+/*   ph_check_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 11:19:21 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/04 14:44:48 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:35:08 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	_check_argv(char *argv)
 	return (_is_int(argv, l, i, sign));
 }
 
-int	ft_check_int(char *argv)
+int	ph_check_int(char *argv)
 {
 	if (_check_argv(argv))
 		return (1);

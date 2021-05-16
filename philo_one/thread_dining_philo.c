@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 02:25:46 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:32:14 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static void	*_forks(t_philo *philo)
 		return (NULL);
 	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	pthread_mutex_lock(&philo->global->m_forks[philo->left_fork]);
-	ft_put_message(philo, FORK);
+	ph_put_message(philo, FORK);
 	pthread_mutex_lock(&philo->global->m_someone_is_dead);
 	if (philo->global->someone_is_dead == 1)
 		return (NULL);
 	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	pthread_mutex_lock(&philo->global->m_forks[philo->right_fork]);
-	ft_put_message(philo, FORK);
+	ph_put_message(philo, FORK);
 	return (philo);
 }
 
@@ -36,14 +36,14 @@ static void	*_eat(t_philo *philo)
 		return (NULL);
 	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	pthread_mutex_lock(&philo->m_time_limit);
-	philo->last_eat = ft_get_time_usec();
+	philo->last_eat = ph_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
 	pthread_mutex_unlock(&philo->m_time_limit);
 	pthread_mutex_lock(&philo->m_eat_cnt);
 	philo->eat_cnt++;
-	ft_put_message(philo, EAT);
+	ph_put_message(philo, EAT);
 	pthread_mutex_unlock(&philo->m_eat_cnt);
-	ft_usleep(philo->global->args->time_to_eat);
+	ph_usleep(philo->global->args->time_to_eat);
 	return (philo);
 }
 
@@ -55,8 +55,8 @@ static void	*_sleep(t_philo *philo)
 	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	pthread_mutex_unlock(&philo->global->m_forks[philo->left_fork]);
 	pthread_mutex_unlock(&philo->global->m_forks[philo->right_fork]);
-	ft_put_message(philo, SLEEP);
-	ft_usleep(philo->global->args->time_to_sleep);
+	ph_put_message(philo, SLEEP);
+	ph_usleep(philo->global->args->time_to_sleep);
 	return (philo);
 }
 
@@ -66,7 +66,7 @@ static void	*_think(t_philo *philo)
 	if (philo->global->someone_is_dead == 1)
 		return (NULL);
 	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
-	ft_put_message(philo, THINK);
+	ph_put_message(philo, THINK);
 	return (philo);
 }
 
@@ -76,7 +76,7 @@ void	*thread_dining_philo(void *arg)
 	pthread_t	thread;
 
 	philo = (t_philo *)arg;
-	philo->last_eat = ft_get_time_usec();
+	philo->last_eat = ph_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
 	pthread_create(&thread, NULL, thread_monitor_deadh, (void *)philo);
 	pthread_detach(thread);

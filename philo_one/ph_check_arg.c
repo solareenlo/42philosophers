@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_arg.c                                     :+:      :+:    :+:   */
+/*   ph_check_arg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 13:58:18 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/11 12:31:33 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:31:33 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	_puterr_arg_n(int i)
 	return (1);
 }
 
-int	ft_check_arg(int argc, char *argv[])
+int	ph_check_arg(int argc, char *argv[])
 {
 	int	i;
 	int	tmp;
@@ -70,13 +70,13 @@ int	ft_check_arg(int argc, char *argv[])
 	if (argc < 5 || 6 < argc)
 		return (_puterr_arg());
 	tmp = ft_atoi(argv[1]);
-	if (ft_check_int(argv[1]) || tmp < 2 || THREADSLIMIT < tmp)
+	if (ph_check_int(argv[1]) || tmp < 2 || THREADSLIMIT < tmp)
 		return (_puterr_arg_1());
 	i = 2;
 	while (i < argc)
 	{
 		tmp = ft_atoi(argv[i]);
-		if (ft_check_int(argv[i]) || tmp < 0)
+		if (ph_check_int(argv[i]) || tmp < 0)
 			return (_puterr_arg_n(i));
 		i++;
 	}

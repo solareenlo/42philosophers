@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 22:29:38 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:31:21 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	_start_threads(t_global *global)
 {
 	pthread_t	thread;
 
-	global->start_time = ft_get_time_msec();
+	global->start_time = ph_get_time_msec();
 	if (global->args->number_of_times_each_philo_must_eat > 0)
 	{
 		pthread_create(&thread, NULL, thread_monitor_eat_cnt, (void *)global);
@@ -46,18 +46,18 @@ int	main(int argc, char *argv[])
 	t_arg		args;
 	t_global	global;
 
-	if (ft_init_args(&args, argc, argv))
+	if (ph_init_args(&args, argc, argv))
 		return (1);
-	if (ft_init_global(&global, &args))
-		return (ft_put_err("error: fatal\n"));
+	if (ph_init_global(&global, &args))
+		return (ph_put_err("error: fatal\n"));
 	if (_start_threads(&global))
-		return (ft_destroy_free(&global, args)
-			&& ft_put_err("error: fatal\n"));
+		return (ph_destroy_free(&global, args)
+			&& ph_put_err("error: fatal\n"));
 	pthread_mutex_lock(&global.m_done);
 	pthread_mutex_lock(&global.m_message);
 	usleep(1000 * 1000);
 	pthread_mutex_unlock(&global.m_message);
 	pthread_mutex_unlock(&global.m_done);
-	ft_destroy_free(&global, args);
+	ph_destroy_free(&global, args);
 	return (0);
 }

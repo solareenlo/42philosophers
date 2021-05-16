@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_func.c                                     :+:      :+:    :+:   */
+/*   ph_init_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 22:22:42 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:37:52 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int	ft_init_args(t_arg *args, int argc, char *argv[])
+int	ph_init_args(t_arg *args, int argc, char *argv[])
 {
-	if (ft_check_arg(argc, argv))
+	if (ph_check_arg(argc, argv))
 		return (1);
 	args->number_of_philo = ft_atoi(argv[1]);
 	args->time_to_die = ft_atoi(argv[2]) * 1000;
@@ -66,7 +66,7 @@ static void	_init_philos(t_global *global, t_arg *args)
 	}
 }
 
-int	ft_init_global(t_global *global, t_arg *args)
+int	ph_init_global(t_global *global, t_arg *args)
 {
 	global->args = args;
 	global->philos = malloc(sizeof(t_philo) * args->number_of_philo);

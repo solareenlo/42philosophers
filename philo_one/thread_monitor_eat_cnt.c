@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 11:29:37 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 22:22:18 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:32:25 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*thread_monitor_eat_cnt(void *arg)
 		pthread_mutex_unlock(&global->m_someone_is_dead);
 		_is_full(global, &cnt);
 	}
-	ft_put_message(&global->philos[0], DONE);
+	ph_put_message(&global->philos[0], DONE);
 	pthread_mutex_unlock(&global->m_done);
 	return (NULL);
 }
