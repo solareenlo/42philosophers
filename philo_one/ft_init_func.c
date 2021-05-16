@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 22:19:29 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 22:22:42 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	_init_mutex(t_global *global, t_arg args)
 	int	i;
 
 	pthread_mutex_init(&global->m_message, NULL);
-	pthread_mutex_init(&global->m_someone_is_deat, NULL);
+	pthread_mutex_init(&global->m_someone_is_dead, NULL);
 	pthread_mutex_init(&global->m_done, NULL);
 	pthread_mutex_lock(&global->m_done);
 	i = 0;

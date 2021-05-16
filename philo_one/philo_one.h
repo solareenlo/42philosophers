@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 15:30:15 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 22:22:13 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_global
 	int				someone_is_dead;
 	pthread_mutex_t	*m_forks;
 	pthread_mutex_t	m_message;
-	pthread_mutex_t	m_someone_is_deat;
+	pthread_mutex_t	m_someone_is_dead;
 	pthread_mutex_t	m_done;
 }	t_global;
 
@@ -80,7 +80,7 @@ int		ft_check_int(char *argv);
 int		ft_init_args(t_arg *args, int argc, char *argv[]);
 int		ft_init_global(t_global *global, t_arg *args);
 void	*thread_dining_philo(void *arg);
-void	*thread_monitor_death(void *arg);
+void	*thread_monitor_deadh(void *arg);
 void	*thread_monitor_eat_cnt(void *arg);
 int		ft_destroy_free(t_global *global, t_arg args);
 int		ft_put_err(const char *err);
