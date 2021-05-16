@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 11:30:13 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 12:17:46 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	_start_threads(t_global *global)
 	i = 0;
 	while (i < global->args->number_of_philo)
 	{
-		pthread_create(&thread, NULL, thread_dining_philo,
+		pthread_create(&thread, NULL, thread_dining_philos,
 			(void *)&(global->philos[i]));
 		pthread_detach(thread);
 		usleep(NEXTTHREAD);
