@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 12:17:27 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 12:54:39 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	_sleep(t_philo *philo)
 	ft_usleep(philo->global->args->time_to_sleep);
 }
 
-void	*thread_dining_philos(void *arg)
+void	*thread_dining_philo(void *arg)
 {
 	t_philo		*philo;
 	pthread_t	thread;

@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/16 12:17:48 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/16 12:17:48 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/16 12:54:45 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/16 12:54:45 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Sun May 16 12:17:48 JST 2021
+# Makefile for philo_one, updated Sun May 16 12:54:45 JST 2021
 
-SRC := ft_check_arg.c ft_check_int.c ft_init_func.c ft_time_func.c libft1.c libft2.c libft_ft_atoi.c main.c philo_utils.c thread_dining_philo.c thread_dining_philos.c thread_monitor_death.c thread_monitor_eat_cnt.c
-OBJ := ft_check_arg.o ft_check_int.o ft_init_func.o ft_time_func.o libft1.o libft2.o libft_ft_atoi.o main.o philo_utils.o thread_dining_philo.o thread_dining_philos.o thread_monitor_death.o thread_monitor_eat_cnt.o
+SRC := ft_check_arg.c ft_check_int.c ft_init_func.c ft_time_func.c libft1.c libft2.c libft_ft_atoi.c main.c philo_utils.c thread_dining_philo.c thread_monitor_death.c thread_monitor_eat_cnt.c
+OBJ := ft_check_arg.o ft_check_int.o ft_init_func.o ft_time_func.o libft1.o libft2.o libft_ft_atoi.o main.o philo_utils.o thread_dining_philo.o thread_monitor_death.o thread_monitor_eat_cnt.o
 
 HDR := philo_one.h
 

@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 12:17:38 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 12:54:06 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ft_check_arg(int argc, char *argv[]);
 int		ft_check_int(char *argv);
 int		ft_init_args(t_arg *args, int argc, char *argv[]);
 int		ft_init_global(t_global *global, t_arg *args);
-void	*thread_dining_philos(void *arg);
+void	*thread_dining_philo(void *arg);
 void	*thread_monitor_death(void *arg);
 void	*thread_monitor_eat_cnt(void *arg);
 int		ft_destroy_free(t_global *global, t_arg args);
