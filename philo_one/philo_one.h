@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 22:22:13 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 22:32:43 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # endif
 
 # define THREADSLIMIT	200
+# define NEXTTHREAD		50
+# define ONECYCLE		500
 # define INTMAX			2147483647
 # define FORK			0x001
 # define EAT			0x002
