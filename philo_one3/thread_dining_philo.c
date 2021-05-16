@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 11:22:47 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 12:15:14 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void	_forks(t_philo *philo)
 
 static void	_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->m_limit_time);
+	pthread_mutex_lock(&philo->m_time_limit);
 	philo->last_eat = ft_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
 	pthread_mutex_lock(&philo->m_eat_cnt);
 	philo->eat_cnt++;
 	ft_put_message(philo, EAT);
 	pthread_mutex_unlock(&philo->m_eat_cnt);
-	pthread_mutex_unlock(&philo->m_limit_time);
+	pthread_mutex_unlock(&philo->m_time_limit);
 	ft_usleep(philo->global->args->time_to_eat);
 	pthread_mutex_unlock(&philo->m_eat);
 }
@@ -48,10 +48,8 @@ void	*thread_dining_philo(void *arg)
 	pthread_t	thread;
 
 	philo = (t_philo *)arg;
-	pthread_mutex_lock(&philo->m_limit_time);
 	philo->last_eat = ft_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
-	pthread_mutex_unlock(&philo->m_limit_time);
 	pthread_create(&thread, NULL, thread_monitor_death, (void *)philo);
 	pthread_detach(thread);
 	while (42)

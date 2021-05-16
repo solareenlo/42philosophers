@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 11:30:08 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 12:14:09 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_philo
 	int				eat_cnt;
 	t_status		status;
 	struct s_global	*global;
-	pthread_mutex_t	m_limit_time;
+	pthread_mutex_t	m_time_limit;
 	pthread_mutex_t	m_eat;
 	pthread_mutex_t	m_eat_cnt;
 	pthread_mutex_t	m_status;

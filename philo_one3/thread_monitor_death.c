@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread_watch_death.c                               :+:      :+:    :+:   */
+/*   thread_monitor_death.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:57:06 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 11:21:58 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 12:15:19 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static void	*_is_philo_died(t_philo *philo)
 		philo->global->someone_is_dead = 1;
 		pthread_mutex_unlock(&philo->global->m_someone_is_deat);
 		ft_put_message(philo, DIED);
-		/* printf("%ld\t%d %s died\n%s", ft_get_time_msec() - philo->global->start_time, philo->pos + 1, RED, RESET); */
-		pthread_mutex_unlock(&philo->m_limit_time);
+		pthread_mutex_unlock(&philo->m_time_limit);
 		pthread_mutex_unlock(&philo->global->m_done);
 		return (NULL);
 	}
@@ -45,10 +44,10 @@ void	*thread_monitor_death(void *arg)
 			return (NULL);
 		}
 		pthread_mutex_unlock(&philo->m_status);
-		pthread_mutex_lock(&philo->m_limit_time);
+		pthread_mutex_lock(&philo->m_time_limit);
 		if (_is_philo_died(philo) == NULL)
 			return (NULL);
-		pthread_mutex_unlock(&philo->m_limit_time);
+		pthread_mutex_unlock(&philo->m_time_limit);
 		usleep(100);
 	}
 	return (NULL);
