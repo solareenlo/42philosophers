@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 15:42:41 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 19:29:43 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	main(int argc, char *argv[])
 			&& ft_put_err("error: fatal\n"));
 	pthread_mutex_lock(&global.m_done);
 	pthread_mutex_lock(&global.m_message);
-	pthread_mutex_unlock(&global.m_message);
 	usleep(1000 * 1000);
+	pthread_mutex_unlock(&global.m_message);
 	pthread_mutex_unlock(&global.m_done);
 	ft_destroy_free(&global, args);
 	return (0);
