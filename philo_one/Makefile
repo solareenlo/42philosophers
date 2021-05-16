@@ -6,7 +6,7 @@
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/16 12:54:45 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/16 12:54:45 by tayamamo         ###   ########.fr        #
+#    Updated: 2021/05/16 15:07:26 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HDR := philo_one.h
 NAME := philo_one
 
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS := -pthread -Wall -Wextra -Werror -g -fsanitize=address
 RM := rm -fr
 
 SRC_DIR := ./
