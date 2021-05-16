@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 14:54:38 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:30:15 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void	ft_putnbr_fd(int n, int fd);
 int		ft_atoi(const char *s);
 int		ft_isdigit(int c);
 int		ft_isspace(int c);
+int		ft_max(int a, int b);
 
 #endif

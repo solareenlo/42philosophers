@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:30:08 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/12 21:34:46 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:28:51 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,12 @@ int	ft_isspace(int c)
 	if (c == ' ')
 		return (1);
 	return (0);
+}
+
+int	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }
