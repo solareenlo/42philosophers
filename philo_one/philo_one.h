@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 22:32:43 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 01:21:22 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@
 # define NEXTTHREAD		50
 # define ONECYCLE		500
 # define INTMAX			2147483647
-# define FORK			0x001
-# define EAT			0x002
-# define SLEEP			0x004
-# define THINK			0x008
-# define DIED			0x010
-# define DONE			0x020
 # define RED			"\033[0;31m"
 # define GREEN			"\033[0;32m"
 # define YELLOW			"\033[0;33m"
@@ -40,6 +34,16 @@
 # define PURPLE			"\033[0;35m"
 # define CYAN			"\033[0;36m"
 # define RESET			"\033[0m"
+
+typedef enum e_type
+{
+	FORK,
+	EAT,
+	SLEEP,
+	THINK,
+	DIED,
+	DONE
+}	t_type;
 
 struct	s_global;
 
