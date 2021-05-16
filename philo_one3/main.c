@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 12:54:20 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 13:18:11 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,16 @@ static int	_start_threads(t_global *global)
 			(void *)&(global->philos[i]));
 		pthread_detach(thread);
 		usleep(NEXTTHREAD);
-		i++;
+		i += 2;
+	}
+	i = 1;
+	while (i < global->args->number_of_philo)
+	{
+		pthread_create(&thread, NULL, thread_dining_philo,
+			(void *)&(global->philos[i]));
+		pthread_detach(thread);
+		usleep(NEXTTHREAD);
+		i += 2;
 	}
 	return (0);
 }

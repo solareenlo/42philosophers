@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:57:06 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 12:15:19 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 13:51:47 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	*thread_monitor_death(void *arg)
 	while (42)
 	{
 		pthread_mutex_lock(&philo->m_status);
-		if (philo->status != ALIVE)
+		if (philo->status == FULL)
 		{
 			pthread_mutex_unlock(&philo->m_status);
 			return (NULL);
@@ -48,7 +48,7 @@ void	*thread_monitor_death(void *arg)
 		if (_is_philo_died(philo) == NULL)
 			return (NULL);
 		pthread_mutex_unlock(&philo->m_time_limit);
-		usleep(100);
+		usleep(10);
 	}
 	return (NULL);
 }
