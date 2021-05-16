@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 11:29:37 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 11:29:57 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:14:37 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ static void	_is_full(t_global *global, int *cnt)
 		if (global->philos[i].eat_cnt
 			>= global->args->number_of_times_each_philo_must_eat)
 		{
-			pthread_mutex_lock(&global->philos[i].m_status);
-			global->philos[i].status = FULL;
-			pthread_mutex_unlock(&global->philos[i].m_status);
 			(*cnt)++;
 			global->philos[i].eat_cnt = -INTMAX;
 		}

@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 12:54:06 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:14:50 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,6 @@ typedef struct s_arg
 	int		number_of_times_each_philo_must_eat;
 }	t_arg;
 
-typedef enum e_status {
-	ALIVE,
-	DEAD,
-	FULL
-}	t_status;
-
 typedef struct s_philo
 {
 	int				pos;
@@ -65,12 +59,10 @@ typedef struct s_philo
 	int				left_fork;
 	int				right_fork;
 	int				eat_cnt;
-	t_status		status;
 	struct s_global	*global;
 	pthread_mutex_t	m_time_limit;
 	pthread_mutex_t	m_eat;
 	pthread_mutex_t	m_eat_cnt;
-	pthread_mutex_t	m_status;
 }	t_philo;
 
 typedef struct s_global

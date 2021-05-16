@@ -6,15 +6,28 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 13:18:11 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:20:11 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
+static void	_start_philos(t_global *global, int i)
+{
+	pthread_t	thread;
+
+	while (i < global->args->number_of_philo)
+	{
+		pthread_create(&thread, NULL, thread_dining_philo,
+			(void *)&(global->philos[i]));
+		pthread_detach(thread);
+		usleep(NEXTTHREAD);
+		i += 2;
+	}
+}
+
 static int	_start_threads(t_global *global)
 {
-	int			i;
 	pthread_t	thread;
 
 	global->start_time = ft_get_time_msec();
@@ -23,24 +36,8 @@ static int	_start_threads(t_global *global)
 		pthread_create(&thread, NULL, thread_monitor_eat_cnt, (void *)global);
 		pthread_detach(thread);
 	}
-	i = 0;
-	while (i < global->args->number_of_philo)
-	{
-		pthread_create(&thread, NULL, thread_dining_philo,
-			(void *)&(global->philos[i]));
-		pthread_detach(thread);
-		usleep(NEXTTHREAD);
-		i += 2;
-	}
-	i = 1;
-	while (i < global->args->number_of_philo)
-	{
-		pthread_create(&thread, NULL, thread_dining_philo,
-			(void *)&(global->philos[i]));
-		pthread_detach(thread);
-		usleep(NEXTTHREAD);
-		i += 2;
-	}
+	_start_philos(global, 0);
+	_start_philos(global, 1);
 	return (0);
 }
 

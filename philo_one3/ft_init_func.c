@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 13:36:32 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:29:08 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static int	_init_mutex(t_global *global, t_arg args)
 		pthread_mutex_init(&global->philos[i].m_eat, NULL);
 		pthread_mutex_lock(&global->philos[i].m_eat);
 		pthread_mutex_init(&global->philos[i].m_eat_cnt, NULL);
-		pthread_mutex_init(&global->philos[i].m_status, NULL);
 		pthread_mutex_init(&global->m_forks[i], NULL);
 		i++;
 	}
@@ -61,12 +60,9 @@ static void	_init_philos(t_global *global, t_arg *args)
 	while (i < args->number_of_philo)
 	{
 		global->philos[i].pos = i;
-		global->philos[i].left_fork = i;
+		global->philos[i].left_fork = i % args->number_of_philo;
 		global->philos[i].right_fork = (i + 1) % args->number_of_philo;
-		/* global->philos[i].left_fork = (i + i % 2) % args->number_of_philo; */
-		/* global->philos[i].right_fork = (i + !(i % 2)) % args->number_of_philo; */
 		global->philos[i].eat_cnt = 0;
-		global->philos[i].status = ALIVE;
 		global->philos[i].global = global;
 		i++;
 	}

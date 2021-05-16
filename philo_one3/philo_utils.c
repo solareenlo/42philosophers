@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 23:40:58 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/16 13:54:05 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/16 14:20:34 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_destroy_free(t_global *global, t_arg args)
 		pthread_mutex_destroy(&global->philos[i].m_time_limit);
 		pthread_mutex_destroy(&global->philos[i].m_eat);
 		pthread_mutex_destroy(&global->philos[i].m_eat_cnt);
-		pthread_mutex_destroy(&global->philos[i].m_status);
 		i++;
 	}
 	free(global->philos);
@@ -64,12 +63,12 @@ void	ft_put_message(t_philo *philo, int type)
 	pthread_mutex_lock(&philo->global->m_message);
 	if (done == 0)
 	{
-			printf("%ld\t", ft_get_time_msec() - philo->global->start_time);
-			if (type != DONE)
-				printf("%d", philo->pos + 1);
-			_put_message(type);
-			if (type == DONE || type == DIED)
-				done = 1;
+		printf("%ld\t", ft_get_time_msec() - philo->global->start_time);
+		if (type != DONE)
+			printf("%d", philo->pos + 1);
+		_put_message(type);
+		if (type == DONE || type == DIED)
+			done = 1;
 	}
 	pthread_mutex_unlock(&philo->global->m_message);
 }
