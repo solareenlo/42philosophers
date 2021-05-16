@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 02:32:14 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:41:02 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	*thread_dining_philo(void *arg)
 	philo = (t_philo *)arg;
 	philo->last_eat = ph_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
-	pthread_create(&thread, NULL, thread_monitor_deadh, (void *)philo);
+	pthread_create(&thread, NULL, thread_monitor_death, (void *)philo);
 	pthread_detach(thread);
 	while (42)
 	{

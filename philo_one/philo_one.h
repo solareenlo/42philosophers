@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 02:36:16 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:40:51 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		ph_check_int(char *argv);
 int		ph_init_args(t_arg *args, int argc, char *argv[]);
 int		ph_init_global(t_global *global, t_arg *args);
 void	*thread_dining_philo(void *arg);
-void	*thread_monitor_deadh(void *arg);
+void	*thread_monitor_death(void *arg);
 void	*thread_monitor_eat_cnt(void *arg);
 int		ph_destroy_free(t_global *global, t_arg args);
 int		ph_put_err(const char *err);

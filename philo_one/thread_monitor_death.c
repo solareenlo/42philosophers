@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:57:06 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 02:32:21 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 02:40:38 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	*_is_philo_died(t_philo *philo)
 	return (philo);
 }
 
-void	*thread_monitor_deadh(void *arg)
+void	*thread_monitor_death(void *arg)
 {
 	t_philo	*philo;
 
