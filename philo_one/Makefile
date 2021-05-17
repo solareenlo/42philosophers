@@ -6,7 +6,7 @@
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/17 02:38:30 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/17 13:11:20 by tayamamo         ###   ########.fr        #
+#    Updated: 2021/05/17 13:49:22 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ NAME := philo_one
 
 CC := gcc
 CFLAGS := -pthread -Wall -Wextra -Werror
-CFLAGS += -g3 -O0
-CFLAGS += -fsanitize=address
+CFLAGS += -O0
+CFLAGS += -g -fsanitize=address
 RM := rm -fr
 
 SRC_DIR := ./
