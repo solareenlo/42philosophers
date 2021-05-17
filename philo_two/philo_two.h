@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:17:16 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 21:53:27 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 02:19:55 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,9 @@ typedef struct s_global
 	size_t	start_time;
 	t_arg	*args;
 	t_philo	*philos;
-	int		someone_is_dead;
+	int		done;
 	sem_t	*sem_forks;
 	sem_t	*sem_message;
-	sem_t	*sem_someone_is_dead;
 	sem_t	*sem_done;
 }	t_global;
 

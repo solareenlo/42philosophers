@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:10:17 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 21:55:28 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 02:28:47 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,26 @@ char	*ph_create_sem_name(char *dst, char *name, int nbr)
 int	ph_unlink_free(t_global *global, t_arg args)
 {
 	int		i;
-	int		err_cnt;
+	int		ret;
 	char	dst[SEMNAMESIZE];
 
-	err_cnt = 0;
+	ret = 0;
 	if (sem_unlink(SEMFORKS) != 0)
-		err_cnt++;
+		ret++;
 	if (sem_unlink(SEMMESSAGE) != 0)
-		err_cnt++;
-	if (sem_unlink(SEMSOMEONE) != 0)
-		err_cnt++;
+		ret++;
 	if (sem_unlink(SEMDONE) != 0)
-		err_cnt++;
+		ret++;
 	i = -1;
 	while (++i < args.number_of_philo)
 	{
 		ph_create_sem_name(dst, SEMLIMIT, i);
 		if (sem_unlink(dst) != 0)
-			err_cnt++;
+			ret++;
 		ph_create_sem_name(dst, SEMCNT, i);
 		if (sem_unlink(dst) != 0)
-			err_cnt++;
+			ret++;
 	}
 	free(global->philos);
-	return (err_cnt);
+	return (ret);
 }
