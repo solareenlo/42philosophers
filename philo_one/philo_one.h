@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 02:40:51 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 13:32:45 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # endif
 
 # define THREADSLIMIT	200
-# define NEXTTHREAD		50
+# define NEXTTHREAD		100
 # define ONECYCLE		500
+# define TIMEMIN		60
+# define TIMEMAX		10000
 # define INTMAX			2147483647
 # define RED			"\033[0;31m"
 # define GREEN			"\033[0;32m"

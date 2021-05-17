@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 23:40:58 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 12:54:22 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 13:14:51 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ph_destroy_free(t_global *global, t_arg args)
 {
 	int	i;
 
-	pthread_mutex_lock(&global->m_message);
 	pthread_mutex_destroy(&global->m_message);
 	pthread_mutex_destroy(&global->m_done);
 	i = 0;

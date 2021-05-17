@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 13:06:18 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 13:14:56 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int argc, char *argv[])
 	pthread_mutex_lock(&global.m_done);
 	pthread_mutex_lock(&global.m_message);
 	usleep(1000 * 1000);
-	pthread_mutex_unlock(&global.m_message);
 	pthread_mutex_unlock(&global.m_done);
 	ph_destroy_free(&global, args);
 	return (0);
