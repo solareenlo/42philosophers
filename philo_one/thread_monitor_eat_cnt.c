@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 11:29:37 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 22:55:33 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 01:12:36 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,8 @@ void	*thread_monitor_eat_cnt(void *arg)
 	{
 		if (cnt == global->args->number_of_philo)
 			break ;
-		pthread_mutex_lock(&global->m_someone_is_dead);
-		if (global->someone_is_dead == 1)
-		{
-			pthread_mutex_unlock(&global->m_someone_is_dead);
+		if (global->done == 1)
 			return (NULL);
-		}
-		pthread_mutex_unlock(&global->m_someone_is_dead);
 		_is_full(global, &cnt);
 	}
 	ph_put_message(&global->philos[0], DONE);

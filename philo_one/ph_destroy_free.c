@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:15:04 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 01:00:00 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 01:19:02 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ int	_destroy(t_global *global)
 	ret = 0;
 	pthread_mutex_unlock(&global->m_message);
 	if (pthread_mutex_destroy(&global->m_message) != 0)
-		ret++;
-	pthread_mutex_unlock(&global->m_someone_is_dead);
-	if (pthread_mutex_destroy(&global->m_someone_is_dead) != 0)
-		ret++;
-	pthread_mutex_unlock(&global->m_everyone_is_full);
-	if (pthread_mutex_destroy(&global->m_everyone_is_full) != 0)
 		ret++;
 	pthread_mutex_unlock(&global->m_done);
 	if (pthread_mutex_destroy(&global->m_done) != 0)
@@ -54,6 +48,5 @@ int	ph_destroy_free(t_global *global, t_arg args)
 	}
 	free(global->philos);
 	free(global->m_forks);
-	printf("ret:%d\n", ret);
 	return (ret);
 }

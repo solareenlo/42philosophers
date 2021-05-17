@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 00:01:04 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 01:21:50 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define PHILO_ONE_H
 
 # include <pthread.h>
-# include <stdlib.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
 
 # ifndef __LINUX__
@@ -76,13 +76,9 @@ typedef struct s_global
 	size_t			start_time;
 	t_arg			*args;
 	t_philo			*philos;
-	int				someone_is_dead;
-	int				everyone_is_full;
 	int				done;
 	pthread_mutex_t	*m_forks;
 	pthread_mutex_t	m_message;
-	pthread_mutex_t	m_someone_is_dead;
-	pthread_mutex_t	m_everyone_is_full;
 	pthread_mutex_t	m_done;
 }	t_global;
 
