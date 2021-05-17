@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_init_func.c                                     :+:      :+:    :+:   */
+/*   ph_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 02:37:52 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 22:41:41 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	_init_mutex(t_global *global, t_arg args)
 
 	pthread_mutex_init(&global->m_message, NULL);
 	pthread_mutex_init(&global->m_someone_is_dead, NULL);
+	pthread_mutex_init(&global->m_everyone_is_full, NULL);
 	pthread_mutex_init(&global->m_done, NULL);
 	pthread_mutex_lock(&global->m_done);
 	i = 0;
@@ -79,6 +80,7 @@ int	ph_init_global(t_global *global, t_arg *args)
 		return (1);
 	}
 	global->someone_is_dead = 0;
+	global->everyone_is_full = 0;
 	_init_philos(global, args);
 	_init_mutex(global, *args);
 	return (0);

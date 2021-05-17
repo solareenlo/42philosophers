@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:57:06 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 02:40:38 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 22:50:31 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	*thread_monitor_death(void *arg)
 	{
 		pthread_mutex_lock(&philo->global->m_someone_is_dead);
 		if (philo->global->someone_is_dead == 1)
+		{
+			pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 			return (NULL);
+		}
 		pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 		pthread_mutex_lock(&philo->m_time_limit);
 		if (_is_philo_died(philo) == NULL)

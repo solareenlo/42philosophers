@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:24:57 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 13:14:56 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 23:05:46 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int argc, char *argv[])
 	pthread_mutex_lock(&global.m_message);
 	usleep(1000 * 1000);
 	pthread_mutex_unlock(&global.m_done);
-	ph_destroy_free(&global, args);
+	if (ph_destroy_free(&global, args))
+		return (ph_put_err("error: fata;\n"));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 13:32:45 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/17 22:40:55 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,11 @@ typedef struct s_global
 	t_arg			*args;
 	t_philo			*philos;
 	int				someone_is_dead;
+	int				everyone_is_full;
 	pthread_mutex_t	*m_forks;
 	pthread_mutex_t	m_message;
 	pthread_mutex_t	m_someone_is_dead;
+	pthread_mutex_t	m_everyone_is_full;
 	pthread_mutex_t	m_done;
 }	t_global;
 
