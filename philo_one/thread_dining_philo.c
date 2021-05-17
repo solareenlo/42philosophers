@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 23:23:20 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 01:00:59 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,8 @@
 
 static void	*_forks(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->global->m_someone_is_dead);
-	if (philo->global->someone_is_dead == 1)
-	{
-		pthread_mutex_unlock(&philo->global->m_someone_is_dead);
-		return (NULL);
-	}
-	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	pthread_mutex_lock(&philo->global->m_forks[philo->left_fork]);
 	ph_put_message(philo, FORK);
-	pthread_mutex_lock(&philo->global->m_someone_is_dead);
-	if (philo->global->someone_is_dead == 1)
-	{
-		pthread_mutex_unlock(&philo->global->m_someone_is_dead);
-		return (NULL);
-	}
-	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	pthread_mutex_lock(&philo->global->m_forks[philo->right_fork]);
 	ph_put_message(philo, FORK);
 	return (philo);
@@ -37,13 +23,6 @@ static void	*_forks(t_philo *philo)
 
 static void	*_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->global->m_someone_is_dead);
-	if (philo->global->someone_is_dead == 1)
-	{
-		pthread_mutex_unlock(&philo->global->m_someone_is_dead);
-		return (NULL);
-	}
-	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	pthread_mutex_lock(&philo->m_time_limit);
 	philo->last_eat = ph_get_time_usec();
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
@@ -58,13 +37,6 @@ static void	*_eat(t_philo *philo)
 
 static void	*_sleep(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->global->m_someone_is_dead);
-	if (philo->global->someone_is_dead == 1)
-	{
-		pthread_mutex_unlock(&philo->global->m_someone_is_dead);
-		return (NULL);
-	}
-	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	pthread_mutex_unlock(&philo->global->m_forks[philo->left_fork]);
 	pthread_mutex_unlock(&philo->global->m_forks[philo->right_fork]);
 	ph_put_message(philo, SLEEP);
@@ -74,13 +46,6 @@ static void	*_sleep(t_philo *philo)
 
 static void	*_think(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->global->m_someone_is_dead);
-	if (philo->global->someone_is_dead == 1)
-	{
-		pthread_mutex_unlock(&philo->global->m_someone_is_dead);
-		return (NULL);
-	}
-	pthread_mutex_unlock(&philo->global->m_someone_is_dead);
 	ph_put_message(philo, THINK);
 	return (philo);
 }
@@ -97,6 +62,8 @@ void	*thread_dining_philo(void *arg)
 	pthread_detach(thread);
 	while (42)
 	{
+		if (philo->global->done == 1)
+			return (NULL);
 		if (_forks(philo) == NULL)
 			return (NULL);
 		if (_eat(philo) == NULL)

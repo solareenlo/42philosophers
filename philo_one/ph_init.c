@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/17 22:41:41 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 00:02:00 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	ph_init_global(t_global *global, t_arg *args)
 	}
 	global->someone_is_dead = 0;
 	global->everyone_is_full = 0;
+	global->done = 0;
 	_init_philos(global, args);
 	_init_mutex(global, *args);
 	return (0);
