@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 23:40:58 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 00:15:15 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 01:40:47 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ void	_put_message(int type)
 		printf("%sDone!\n%s", BLUE, RESET);
 }
 
-void	ph_put_message(t_philo *philo, int type)
+int	ph_put_message(t_philo *philo, int type)
 {
 	static int	done = 0;
 
-	pthread_mutex_lock(&philo->global->m_message);
+	if (pthread_mutex_lock(&philo->global->m_message) != 0)
+		return (1);
 	if (done == 0)
 	{
 		printf("%ld\t", ph_get_time_msec() - philo->global->start_time);
@@ -49,5 +50,7 @@ void	ph_put_message(t_philo *philo, int type)
 		if (type == DONE || type == DIED)
 			done = 1;
 	}
-	pthread_mutex_unlock(&philo->global->m_message);
+	if (pthread_mutex_unlock(&philo->global->m_message) != 0)
+		return (1);
+	return (0);
 }

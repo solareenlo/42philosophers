@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:25:13 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 01:21:50 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 01:40:21 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	*thread_monitor_death(void *arg);
 void	*thread_monitor_eat_cnt(void *arg);
 int		ph_destroy_free(t_global *global, t_arg args);
 int		ph_put_err(const char *err);
-void	ph_put_message(t_philo *philo, int type);
+int		ph_put_message(t_philo *philo, int type);
 
 size_t	ph_get_time_usec(void);
 size_t	ph_get_time_msec(void);

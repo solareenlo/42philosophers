@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:15:04 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 01:19:02 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 01:59:37 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	_destroy(t_global *global)
 	int	ret;
 
 	ret = 0;
-	pthread_mutex_unlock(&global->m_message);
+	if (pthread_mutex_unlock(&global->m_message) != 0)
+		ret++;
 	if (pthread_mutex_destroy(&global->m_message) != 0)
 		ret++;
-	pthread_mutex_unlock(&global->m_done);
+	if (pthread_mutex_unlock(&global->m_done) != 0)
+		ret++;
 	if (pthread_mutex_destroy(&global->m_done) != 0)
 		ret++;
 	return (ret);
@@ -35,13 +37,16 @@ int	ph_destroy_free(t_global *global, t_arg args)
 	i = 0;
 	while (i < args.number_of_philo)
 	{
-		pthread_mutex_unlock(&global->m_forks[i]);
+		if (pthread_mutex_unlock(&global->m_forks[i]) != 0)
+			ret++;
 		if (pthread_mutex_destroy(&global->m_forks[i]) != 0)
 			ret++;
-		pthread_mutex_unlock(&global->philos[i].m_time_limit);
+		if (pthread_mutex_unlock(&global->philos[i].m_time_limit) != 0)
+			ret++;
 		if (pthread_mutex_destroy(&global->philos[i].m_time_limit) != 0)
 			ret++;
-		pthread_mutex_unlock(&global->philos[i].m_eat_cnt);
+		if (pthread_mutex_unlock(&global->philos[i].m_eat_cnt) != 0)
+			ret++;
 		if (pthread_mutex_destroy(&global->philos[i].m_eat_cnt) != 0)
 			ret++;
 		i++;

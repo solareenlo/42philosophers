@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 01:16:12 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 01:28:56 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,21 @@ static int	_init_mutex(t_global *global, t_arg args)
 {
 	int	i;
 
-	pthread_mutex_init(&global->m_message, NULL);
-	pthread_mutex_init(&global->m_done, NULL);
-	pthread_mutex_lock(&global->m_done);
+	if (pthread_mutex_init(&global->m_message, NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&global->m_done, NULL) != 0)
+		return (1);
+	if (pthread_mutex_lock(&global->m_done) != 0)
+		return (1);
 	i = 0;
 	while (i < args.number_of_philo)
 	{
-		pthread_mutex_init(&global->philos[i].m_time_limit, NULL);
-		pthread_mutex_init(&global->philos[i].m_eat_cnt, NULL);
-		pthread_mutex_init(&global->m_forks[i], NULL);
+		if (pthread_mutex_init(&global->philos[i].m_time_limit, NULL) != 0)
+			return (1);
+		if (pthread_mutex_init(&global->philos[i].m_eat_cnt, NULL) != 0)
+			return (1);
+		if (pthread_mutex_init(&global->m_forks[i], NULL) != 0)
+			return (1);
 		i++;
 	}
 	return (0);
@@ -79,6 +85,5 @@ int	ph_init_global(t_global *global, t_arg *args)
 	}
 	global->done = 0;
 	_init_philos(global, args);
-	_init_mutex(global, *args);
-	return (0);
+	return (_init_mutex(global, *args));
 }
