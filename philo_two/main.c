@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:24:10 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 09:11:19 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 09:39:20 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	_start_threads(t_global *global)
 	pthread_t	thread;
 
 	global->start_time = ph_get_time_msec();
-	if (global->args->number_of_times_each_philo_must_eat > 0)
+	if (global->args->number_of_times_each_philo_must_eat)
 	{
 		if (pthread_create(&thread, NULL, thread_monitor_eat_cnt,
 				(void *)global) != 0)

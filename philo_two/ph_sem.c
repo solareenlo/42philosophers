@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 02:43:10 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 02:47:50 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 09:37:12 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,12 @@ int	ph_unlink_free(t_global *global, t_arg args)
 		ph_sem_create_name(dst, SEMLIMIT, i);
 		if (sem_unlink(dst) != 0)
 			ret++;
-		ph_sem_create_name(dst, SEMCNT, i);
-		if (sem_unlink(dst) != 0)
-			ret++;
+		if (args.number_of_times_each_philo_must_eat)
+		{
+			ph_sem_create_name(dst, SEMCNT, i);
+			if (sem_unlink(dst) != 0)
+				ret++;
+		}
 	}
 	free(global->philos);
 	return (ret);

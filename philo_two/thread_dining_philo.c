@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 09:18:04 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 09:40:47 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ static int	_eat(t_philo *philo)
 	philo->time_limit = philo->last_eat + philo->global->args->time_to_die;
 	if (sem_post(philo->sem_time_limit) != 0)
 		return (1);
-	if (sem_wait(philo->sem_eat_cnt) != 0)
-		return (1);
-	philo->eat_cnt++;
+	if (philo->global->args->number_of_times_each_philo_must_eat)
+	{
+		if (sem_wait(philo->sem_eat_cnt) != 0)
+			return (1);
+		philo->eat_cnt++;
+		if (sem_post(philo->sem_eat_cnt) != 0)
+			return (1);
+	}
 	if (ph_put_message(philo, EAT))
-		return (1);
-	if (sem_post(philo->sem_eat_cnt) != 0)
 		return (1);
 	ph_usleep(philo->global->args->time_to_eat);
 	return (0);
