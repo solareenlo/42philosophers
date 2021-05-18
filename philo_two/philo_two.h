@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:17:16 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 14:14:10 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 17:32:11 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,9 @@ int		ph_check_arg(int argc, char *argv[]);
 int		ph_check_int(char *argv);
 int		ph_init_args(t_arg *args, int argc, char *argv[]);
 int		ph_init_global(t_global *global, t_arg *args);
-int		ph_put_message(t_philo *philo, int type);
+
 int		ph_put_err(const char *err);
+int		ph_put_message(t_philo *philo, int type);
 
 sem_t	*ph_sem_open(char *name, int value);
 char	*ph_sem_create_name(char *dst, char *name, int nbr);
