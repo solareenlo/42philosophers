@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 13:47:15 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 18:51:13 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	_sem_create_name(t_global *global, t_arg *args)
 	{
 		ph_sem_create_name(dst, SEM, i);
 		global->philos[i].sem = ph_sem_open(dst, 1);
+		if (global->philos[i].sem == SEM_FAILED)
+			ret++;
 		i++;
 	}
 	return (ret);
@@ -79,8 +81,14 @@ int	ph_init_global(t_global *global, t_arg *args)
 		return (1);
 	global->done = 0;
 	global->sem_forks = ph_sem_open(SEMFORKS, args->number_of_philo);
+	if (global->sem_forks == SEM_FAILED)
+		ret++;
 	global->sem_message = ph_sem_open(SEMMESSAGE, 1);
+	if (global->sem_message == SEM_FAILED)
+		ret++;
 	global->sem_done = ph_sem_open(SEMDONE, 0);
-	ret = _init_philos(global, args);
+	if (global->sem_done == SEM_FAILED)
+		ret++;
+	ret += _init_philos(global, args);
 	return (ret);
 }

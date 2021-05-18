@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:24:10 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 17:58:36 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 18:42:08 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,20 @@ int	main(int argc, char *argv[])
 	t_arg		args;
 	t_global	global;
 
+	memset(&args, 0, sizeof(t_arg));
 	if (ph_init_args(&args, argc, argv))
 		return (1);
+	memset(&global, 0, sizeof(t_global));
 	if (ph_init_global(&global, &args))
-		return (ph_put_err("error: fatal\n"));
+		return (ph_sem_unlink_free(&global, args)
+			|| ph_put_err("error: fatal1\n"));
 	if (_start_threads(&global))
 		return (ph_sem_unlink_free(&global, args)
-			&& ph_put_err("error: fatal\n"));
+			|| ph_put_err("error: fatal2\n"));
 	sem_wait(global.sem_done);
 	global.done = 1;
 	usleep(1000 * 1000);
 	if (ph_sem_unlink_free(&global, args))
-		return (ph_put_err("error: fatal\n"));
+		return (ph_put_err("error: fatal3\n"));
 	return (0);
 }
