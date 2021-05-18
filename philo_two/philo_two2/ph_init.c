@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 13:24:44 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 13:47:15 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,8 @@ static int	_sem_create_name(t_global *global, t_arg *args)
 	i = 0;
 	while (i < args->number_of_philo)
 	{
-		ph_sem_create_name(dst, SEMLIMIT, i);
-		global->philos[i].sem_time_limit = ph_sem_open(dst, 1);
-		if (global->philos[i].sem_time_limit == SEM_FAILED)
-		{
-			printf("%s\n", dst);
-			ret++;
-		}
-		if (args->number_of_times_each_philo_must_eat)
-		{
-			ph_sem_create_name(dst, SEMCNT, i);
-			global->philos[i].sem_eat_cnt = ph_sem_open(dst, 1);
-			if (global->philos[i].sem_eat_cnt == SEM_FAILED)
-			{
-				printf("%s\n", dst);
-				ret++;
-			}
-		}
+		ph_sem_create_name(dst, SEM, i);
+		global->philos[i].sem = ph_sem_open(dst, 1);
 		i++;
 	}
 	return (ret);
@@ -79,9 +64,7 @@ static int	_init_philos(t_global *global, t_arg *args)
 		global->philos[i].global = global;
 		i++;
 	}
-	printf("ret:%d\n", ret);
 	ret += _sem_create_name(global, args);
-	printf("ret:%d\n", ret);
 	return (ret);
 }
 

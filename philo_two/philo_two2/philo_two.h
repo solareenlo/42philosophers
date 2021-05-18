@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:17:16 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 13:22:25 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 14:00:26 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <semaphore.h>
 # include <stdlib.h>
 # include <string.h>
-# include <errno.h>
 
 # ifndef __LINUX__
 #  include <sys/time.h>
@@ -27,12 +26,13 @@
 
 # define THREADSLIMIT	200
 # define NEXTTHREAD		100
-# define ONECYCLE		500
+# define ONECYCLE		1500
 # define TIMEMIN		60
 # define TIMEMAX		10000
 # define INTMAX			2147483647
 
 # define SEMNAMESIZE	128
+# define SEM			"ph_sem"
 # define SEMFORKS		"forks"
 # define SEMMESSAGE		"message"
 # define SEMSOMEONE		"someone_is_dead"
@@ -76,8 +76,7 @@ typedef struct s_philo
 	int				right_fork;
 	int				eat_cnt;
 	struct s_global	*global;
-	sem_t			*sem_time_limit;
-	sem_t			*sem_eat_cnt;
+	sem_t			*sem;
 }	t_philo;
 
 typedef struct s_global

@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 11:29:37 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 09:20:36 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 13:40:25 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	_is_full(t_global *global, int *cnt)
 	i = 0;
 	while (i < global->args->number_of_philo)
 	{
-		if (sem_wait(global->philos[i].sem_eat_cnt) != 0)
+		if (sem_wait(global->philos[i].sem) != 0)
 			return (1);
 		if (global->philos[i].eat_cnt
 			>= global->args->number_of_times_each_philo_must_eat)
@@ -27,7 +27,7 @@ static int	_is_full(t_global *global, int *cnt)
 			(*cnt)++;
 			global->philos[i].eat_cnt = -INTMAX;
 		}
-		if (sem_post(global->philos[i].sem_eat_cnt) != 0)
+		if (sem_post(global->philos[i].sem) != 0)
 			return (1);
 		i++;
 	}
