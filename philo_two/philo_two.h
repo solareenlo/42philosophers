@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:17:16 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 08:46:38 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 13:22:25 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <semaphore.h>
 # include <stdlib.h>
 # include <string.h>
+# include <errno.h>
 
 # ifndef __LINUX__
 #  include <sys/time.h>

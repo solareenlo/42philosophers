@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 09:38:43 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 13:24:44 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,42 @@ int	ph_init_args(t_arg *args, int argc, char *argv[])
 	return (0);
 }
 
-static int	_init_philos(t_global *global, t_arg *args)
+static int	_sem_create_name(t_global *global, t_arg *args)
 {
 	int		i;
 	int		ret;
 	char	dst[SEMNAMESIZE];
+
+	ret = 0;
+	i = 0;
+	while (i < args->number_of_philo)
+	{
+		ph_sem_create_name(dst, SEMLIMIT, i);
+		global->philos[i].sem_time_limit = ph_sem_open(dst, 1);
+		if (global->philos[i].sem_time_limit == SEM_FAILED)
+		{
+			printf("%s\n", dst);
+			ret++;
+		}
+		if (args->number_of_times_each_philo_must_eat)
+		{
+			ph_sem_create_name(dst, SEMCNT, i);
+			global->philos[i].sem_eat_cnt = ph_sem_open(dst, 1);
+			if (global->philos[i].sem_eat_cnt == SEM_FAILED)
+			{
+				printf("%s\n", dst);
+				ret++;
+			}
+		}
+		i++;
+	}
+	return (ret);
+}
+
+static int	_init_philos(t_global *global, t_arg *args)
+{
+	int		i;
+	int		ret;
 
 	i = 0;
 	ret = 0;
@@ -46,25 +77,17 @@ static int	_init_philos(t_global *global, t_arg *args)
 		global->philos[i].left_fork = (i + 1) % args->number_of_philo;
 		global->philos[i].eat_cnt = 0;
 		global->philos[i].global = global;
-		ph_sem_create_name(dst, SEMLIMIT, i);
-		global->philos[i].sem_time_limit = ph_sem_open(dst, 1);
-		if (global->philos[i].sem_time_limit == SEM_FAILED)
-			ret++;
-		if (args->number_of_times_each_philo_must_eat)
-		{
-			ph_sem_create_name(dst, SEMCNT, i);
-			global->philos[i].sem_eat_cnt = ph_sem_open(dst, 1);
-			if (global->philos[i].sem_eat_cnt == SEM_FAILED)
-				ret++;
-		}
 		i++;
 	}
+	printf("ret:%d\n", ret);
+	ret += _sem_create_name(global, args);
+	printf("ret:%d\n", ret);
 	return (ret);
 }
 
 int	ph_init_global(t_global *global, t_arg *args)
 {
-	int	ret;
+	int		ret;
 
 	ret = 0;
 	global->args = args;

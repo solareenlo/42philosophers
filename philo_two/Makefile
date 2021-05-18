@@ -6,7 +6,7 @@
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 09:01:16 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/18 09:01:16 by tayamamo         ###   ########.fr        #
+#    Updated: 2021/05/18 13:05:30 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,10 @@ HDR := philo_two.h
 NAME := philo_two
 
 CC := gcc
-CFLAGS := -pthread -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror
 CFLAGS += -O0
 CFLAGS += -g -fsanitize=address
+LFLAGS := -lpthread
 RM := rm -fr
 
 SRC_DIR := ./
@@ -37,7 +38,7 @@ all: $(NAME)
 
 # Linking
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
 
 # Compiling
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
