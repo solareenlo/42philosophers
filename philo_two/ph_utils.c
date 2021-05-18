@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:10:17 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 02:28:47 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 09:04:45 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,59 +19,38 @@ int	ph_put_err(const char *err)
 	return (1);
 }
 
-sem_t	*ph_sem_open(char *name, int value)
+void	_put_message(int type)
 {
-	int		oflag;
-	mode_t	mode;
-	sem_t	*sem;
-
-	oflag = O_CREAT | O_EXCL;
-	mode = S_IRWXU | S_IRGRP | S_IROTH;
-	sem = sem_open(name, oflag, mode, value);
-	if (sem == SEM_FAILED)
-	{
-		sem_unlink(name);
-		sem = sem_open(name, oflag, mode, value);
-	}
-	return (sem);
+	if (type == DIED)
+		printf("%s died\n%s", RED, RESET);
+	if (type == FORK)
+		printf(" has taken a fork\n");
+	else if (type == EAT)
+		printf("%s is eating\n%s", GREEN, RESET);
+	else if (type == SLEEP)
+		printf (" is sleeping\n");
+	else if (type == THINK)
+		printf(" is thinkig\n");
+	else if (type == DONE)
+		printf("%sDone!\n%s", BLUE, RESET);
 }
 
-char	*ph_create_sem_name(char *dst, char *name, int nbr)
+int	ph_put_message(t_philo *philo, int type)
 {
-	char	*num;
+	static int	done = 0;
 
-	ft_strlcpy(dst, name, SEMNAMESIZE);
-	num = ft_itoa(nbr);
-	if (num == NULL)
-		return (NULL);
-	ft_strlcat(dst, num, SEMNAMESIZE);
-	free(num);
-	return (dst);
-}
-
-int	ph_unlink_free(t_global *global, t_arg args)
-{
-	int		i;
-	int		ret;
-	char	dst[SEMNAMESIZE];
-
-	ret = 0;
-	if (sem_unlink(SEMFORKS) != 0)
-		ret++;
-	if (sem_unlink(SEMMESSAGE) != 0)
-		ret++;
-	if (sem_unlink(SEMDONE) != 0)
-		ret++;
-	i = -1;
-	while (++i < args.number_of_philo)
+	if (sem_wait(philo->global->sem_message) != 0)
+		return (1);
+	if (done == 0)
 	{
-		ph_create_sem_name(dst, SEMLIMIT, i);
-		if (sem_unlink(dst) != 0)
-			ret++;
-		ph_create_sem_name(dst, SEMCNT, i);
-		if (sem_unlink(dst) != 0)
-			ret++;
+		printf("%ld\t", ph_get_time_msec() - philo->global->start_time);
+		if (type != DONE)
+			printf("%d", philo->pos + 1);
+		_put_message(type);
+		if (type == DONE || type == DIED)
+			done = 1;
 	}
-	free(global->philos);
-	return (ret);
+	if (sem_post(philo->global->sem_message) != 0)
+		return (1);
+	return (0);
 }

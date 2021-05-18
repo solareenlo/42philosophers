@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 02:28:57 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 09:17:50 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static int	_init_philos(t_global *global, t_arg *args)
 		global->philos[i].left_fork = (i + 1) % args->number_of_philo;
 		global->philos[i].eat_cnt = 0;
 		global->philos[i].global = global;
-		ph_create_sem_name(dst, SEMLIMIT, i);
+		ph_sem_create_name(dst, SEMLIMIT, i);
 		global->philos[i].sem_time_limit = ph_sem_open(dst, 1);
 		if (global->philos[i].sem_time_limit == SEM_FAILED)
 			ret++;
-		ph_create_sem_name(dst, SEMCNT, i);
-		global->philos[i].sem_eat_cnt = ph_sem_open(dst, 0);
+		ph_sem_create_name(dst, SEMCNT, i);
+		global->philos[i].sem_eat_cnt = ph_sem_open(dst, 1);
 		if (global->philos[i].sem_eat_cnt == SEM_FAILED)
 			ret++;
 		i++;

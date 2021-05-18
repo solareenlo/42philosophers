@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/17 21:27:51 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/17 21:27:51 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/18 09:01:16 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/18 09:01:16 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Mon May 17 21:27:51 JST 2021
+# Makefile for philo_one, updated Tue May 18 09:01:16 JST 2021
 
-SRC := libft_1.c libft_2.c libft_atoi.c libft_itoa.c main.c ph_check_arg.c ph_check_int.c ph_init.c ph_utils.c
-OBJ := libft_1.o libft_2.o libft_atoi.o libft_itoa.o main.o ph_check_arg.o ph_check_int.o ph_init.o ph_utils.o
+SRC := libft_1.c libft_2.c libft_atoi.c libft_itoa.c main.c ph_check_arg.c ph_check_int.c ph_init.c ph_sem.c ph_time.c ph_utils.c thread_dining_philo.c thread_monitor_death.c thread_monitor_eat_cnt.c
+OBJ := libft_1.o libft_2.o libft_atoi.o libft_itoa.o main.o ph_check_arg.o ph_check_int.o ph_init.o ph_sem.o ph_time.o ph_utils.o thread_dining_philo.o thread_monitor_death.o thread_monitor_eat_cnt.o
 
 HDR := philo_two.h
 
