@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 02:43:10 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 13:59:02 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 17:47:00 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	ph_unlink_free(t_global *global, t_arg args)
 	int		ret;
 
 	ret = 0;
-	(void)args;
 	if (sem_unlink(SEMFORKS) != 0)
 		ret++;
 	if (sem_unlink(SEMMESSAGE) != 0)
