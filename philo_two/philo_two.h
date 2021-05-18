@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:17:16 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 14:00:26 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/18 14:14:10 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@
 # define SEM			"ph_sem"
 # define SEMFORKS		"forks"
 # define SEMMESSAGE		"message"
-# define SEMSOMEONE		"someone_is_dead"
 # define SEMDONE		"done"
-# define SEMLIMIT		"time_limit"
-# define SEMCNT			"eat_cnt"
 
 # define RED			"\033[0;31m"
 # define GREEN			"\033[0;32m"
