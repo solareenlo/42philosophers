@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 21:30:08 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 14:27:59 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 16:41:33 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	slen;
 	size_t	dlen;
-	char	*d;
 	int		i;
 
-	d = dst;
 	slen = ft_strlen(src);
 	dlen = ft_strlen(dst);
 	if (size <= dlen)
