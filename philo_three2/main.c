@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:38 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 18:32:04 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 19:17:34 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ static int	_start_processes(t_global *global, pid_t *pids)
 	int			i;
 	pid_t		pid;
 
-	if (global->args->number_of_times_each_philo_must_eat)
-		if (_thread_monitor_eat_cnt(global))
-			return (1);
 	global->start_time = ph_get_time_msec();
 	i = 0;
 	while (i < global->args->number_of_philo)
@@ -63,11 +60,14 @@ static int	_start_processes(t_global *global, pid_t *pids)
 		usleep(NEXTTHREAD);
 		i += 2;
 	}
-	sem_wait(global->sem_done);
-	global->the_end = 1;
-	i = global->args->number_of_philo;
-	while (i--)
-		sem_post(global->sem_eat_cnt);
+	if (pid != 0)
+	{
+		sem_wait(global->sem_done);
+		global->the_end = 1;
+		i = global->args->number_of_philo;
+		while (i--)
+			sem_post(global->sem_eat_cnt);
+	}
 	return (0);
 }
 
@@ -87,6 +87,10 @@ int	main(int argc, char *argv[])
 	if (ph_init_global(&global, &args))
 		return (ph_sem_unlink_free(&global, args, pids)
 			|| ph_put_err("error: fatal1\n"));
+	if (global.args->number_of_times_each_philo_must_eat)
+		if (_thread_monitor_eat_cnt(&global))
+			return (ph_sem_unlink_free(&global, args, pids)
+				|| ph_put_err("error: fatal1\n"));
 	_start_processes(&global, pids);
 	ph_kill_processes(pids, args.number_of_philo);
 	usleep(1000);
