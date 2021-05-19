@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 14:53:00 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 16:02:39 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static int	_eat(t_philo *philo)
 	if (philo->global->args->number_of_times_each_philo_must_eat)
 	{
 		philo->eat_cnt++;
-		if (philo->eat_cnt == philo->global->args->number_of_times_each_philo_must_eat)
+		if (philo->eat_cnt
+			== philo->global->args->number_of_times_each_philo_must_eat)
 			sem_post(philo->global->sem_eat_cnt);
 	}
 	if (sem_post(philo->sem) != 0)
@@ -76,13 +77,8 @@ void	*process_dining_philo(t_philo *philo)
 		return (NULL);
 	while (42)
 	{
-		/* sem_wait(philo->global->sem_the_end); */
 		if (philo->global->the_end == 1)
-		{
-			/* sem_post(philo->global->sem_the_end); */
 			exit(0);
-		}
-		/* sem_post(philo->global->sem_the_end); */
 		if (_forks(philo))
 			exit(1);
 		if (_eat(philo))

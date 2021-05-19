@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:10:17 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 14:59:23 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 15:59:40 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,8 @@ int	ph_put_message(t_philo *philo, int type)
 {
 	static int	done = 0;
 
-	/* sem_wait(philo->global->sem_the_end); */
 	if (philo->global->the_end == 1)
-	{
-		/* sem_post(philo->global->sem_the_end); */
 		return (0);
-	}
-	/* sem_post(philo->global->sem_the_end); */
 	if (sem_wait(philo->global->sem_message) != 0)
 		return (1);
 	if (done == 0)

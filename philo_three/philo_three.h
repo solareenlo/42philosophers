@@ -6,14 +6,13 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 14:45:58 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 16:00:23 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_THREE_H
 # define PHILO_THREE_H
 
-#include <errno.h>
 # include <stdio.h>
 # include <pthread.h>
 # include <semaphore.h>

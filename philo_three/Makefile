@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/18 20:01:24 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/18 20:24:27 by tayamamo         ###   ########.fr        #
+#    Created: 2021/05/19 15:59:06 by tayamamo          #+#    #+#              #
+#    Updated: 2021/05/19 15:59:06 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile for philo_one, updated Tue May 18 20:01:24 JST 2021
+# Makefile for philo_one, updated Wed May 19 15:59:06 JST 2021
 
-SRC := libft_1.c libft_2.c libft_atoi.c libft_itoa.c main.c ph_check_arg.c ph_check_int.c ph_init.c ph_process.c ph_sem.c ph_time.c ph_utils.c process_dining_philo.c thread_monitor_death.c thread_monitor_eat_cnt.c
-OBJ := libft_1.o libft_2.o libft_atoi.o libft_itoa.o main.o ph_check_arg.o ph_check_int.o ph_init.o ph_process.o ph_sem.o ph_time.o ph_utils.o process_dining_philo.o thread_monitor_death.o thread_monitor_eat_cnt.o
+SRC := libft_1.c libft_2.c libft_atoi.c libft_itoa.c main.c ph_check_arg.c ph_check_int.c ph_init.c ph_process.c ph_sem.c ph_sem_unlink_free.c ph_time.c ph_utils.c process_dining_philo.c thread_monitor_death.c thread_monitor_eat_cnt.c
+OBJ := libft_1.o libft_2.o libft_atoi.o libft_itoa.o main.o ph_check_arg.o ph_check_int.o ph_init.o ph_process.o ph_sem.o ph_sem_unlink_free.o ph_time.o ph_utils.o process_dining_philo.o thread_monitor_death.o thread_monitor_eat_cnt.o
 
 HDR := philo_three.h
 
