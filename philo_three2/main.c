@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:38 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 19:17:34 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 19:48:15 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static int	_start_processes(t_global *global, pid_t *pids)
 			process_dining_philo(&(global->philos[i]));
 			exit(0);
 		}
-		usleep(NEXTTHREAD);
 		pids[i] = pid;
 		i += 2;
+		usleep(NEXTPROCESS);
 	}
 	i = 1;
 	while (i < global->args->number_of_philo)
@@ -57,8 +57,8 @@ static int	_start_processes(t_global *global, pid_t *pids)
 			exit(0);
 		}
 		pids[i] = pid;
-		usleep(NEXTTHREAD);
 		i += 2;
+		usleep(NEXTPROCESS);
 	}
 	if (pid != 0)
 	{

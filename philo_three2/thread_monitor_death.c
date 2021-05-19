@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:57:06 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 16:02:08 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 19:45:12 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	*thread_monitor_death(void *arg)
 		}
 		if (sem_post(philo->sem) != 0)
 			break ;
-		usleep(ONECYCLE);
+		usleep(ft_max(ONECYCLE,
+				ONECYCLE * philo->global->args->number_of_philo / 100));
 	}
 	return (NULL);
 }

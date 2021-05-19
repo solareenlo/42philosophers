@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 17:47:58 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 19:50:22 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # endif
 
 # define THREADSLIMIT	200
-# define NEXTTHREAD		100
+# define NEXTPROCESS	100
 # define ONECYCLE		1000
 # define TIMEMIN		60
 # define TIMEMAX		10000
