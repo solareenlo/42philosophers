@@ -23,6 +23,8 @@
 # ifndef __LINUX__
 #  include <sys/time.h>
 #  include <unistd.h>
+#  include <sys/wait.h>
+#  include <fcntl.h>
 # endif
 
 # define THREADSLIMIT	200
