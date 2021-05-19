@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 19:50:22 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 19:55:00 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ph_wait_processes(pid_t *pids, t_arg args);
 
 void	*process_dining_philo(t_philo *philo);
 void	*thread_monitor_death(void *arg);
-void	*thread_monitor_eat_cnt(void *arg);
+int		thread_monitor_eat_cnt(t_global *global);
 
 size_t	ph_get_time_usec(void);
 size_t	ph_get_time_msec(void);

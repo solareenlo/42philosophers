@@ -6,31 +6,19 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:38 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 19:48:15 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 20:16:08 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-static int	_thread_monitor_eat_cnt(t_global *global)
-{
-	pthread_t	thread;
-
-	if (pthread_create(&thread, NULL, thread_monitor_eat_cnt,
-			(void *)global) != 0)
-		return (1);
-	if (pthread_detach(thread) != 0)
-		return (1);
-	return (0);
-}
-
-static int	_start_processes(t_global *global, pid_t *pids)
+static void	_run_processes(t_global *global, int start, pid_t *pids)
 {
 	int			i;
 	pid_t		pid;
 
 	global->start_time = ph_get_time_msec();
-	i = 0;
+	i = start;
 	while (i < global->args->number_of_philo)
 	{
 		pid = fork();
@@ -45,29 +33,20 @@ static int	_start_processes(t_global *global, pid_t *pids)
 		i += 2;
 		usleep(NEXTPROCESS);
 	}
-	i = 1;
-	while (i < global->args->number_of_philo)
-	{
-		pid = fork();
-		if (pid == -1)
-			exit(ph_kill_processes(pids, i));
-		else if (pid == 0)
-		{
-			process_dining_philo(&(global->philos[i]));
-			exit(0);
-		}
-		pids[i] = pid;
-		i += 2;
-		usleep(NEXTPROCESS);
-	}
-	if (pid != 0)
-	{
-		sem_wait(global->sem_done);
-		global->the_end = 1;
-		i = global->args->number_of_philo;
-		while (i--)
-			sem_post(global->sem_eat_cnt);
-	}
+}
+
+static int	_start_processes(t_global *global, pid_t *pids)
+{
+	int	i;
+
+	global->start_time = ph_get_time_msec();
+	_run_processes(global, 0, pids);
+	_run_processes(global, 1, pids);
+	sem_wait(global->sem_done);
+	global->the_end = 1;
+	i = global->args->number_of_philo;
+	while (i--)
+		sem_post(global->sem_eat_cnt);
 	return (0);
 }
 
@@ -88,7 +67,7 @@ int	main(int argc, char *argv[])
 		return (ph_sem_unlink_free(&global, args, pids)
 			|| ph_put_err("error: fatal1\n"));
 	if (global.args->number_of_times_each_philo_must_eat)
-		if (_thread_monitor_eat_cnt(&global))
+		if (thread_monitor_eat_cnt(&global))
 			return (ph_sem_unlink_free(&global, args, pids)
 				|| ph_put_err("error: fatal1\n"));
 	_start_processes(&global, pids);

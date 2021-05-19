@@ -6,13 +6,13 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 11:29:37 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 16:01:15 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 19:54:31 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void	*thread_monitor_eat_cnt(void *arg)
+static void	*_thread_monitor_eat_cnt(void *arg)
 {
 	int			i;
 	t_global	*global;
@@ -24,4 +24,16 @@ void	*thread_monitor_eat_cnt(void *arg)
 	ph_put_message(&global->philos[0], DONE);
 	sem_post(global->sem_done);
 	return (NULL);
+}
+
+int	thread_monitor_eat_cnt(t_global *global)
+{
+	pthread_t	thread;
+
+	if (pthread_create(&thread, NULL, _thread_monitor_eat_cnt,
+			(void *)global) != 0)
+		return (1);
+	if (pthread_detach(thread) != 0)
+		return (1);
+	return (0);
 }
