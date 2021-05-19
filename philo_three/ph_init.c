@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 05:15:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 12:19:47 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:51:58 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ int	ph_init_global(t_global *global, t_arg *args)
 	global->philos = malloc(sizeof(t_philo) * args->number_of_philo);
 	if (global->philos == NULL)
 		return (1);
-	global->done = 0;
+	global->the_end = 0;
 	global->sem_forks = ph_sem_open(SEMFORKS, args->number_of_philo);
 	if (global->sem_forks == SEM_FAILED)
 		ret++;
-	global->sem_eat_cnt = ph_sem_open(SEMFORKS, 0);
+	global->sem_eat_cnt = ph_sem_open(SEMEATCNT, 0);
 	if (global->sem_eat_cnt == SEM_FAILED)
 		ret++;
 	global->sem_message = ph_sem_open(SEMMESSAGE, 1);

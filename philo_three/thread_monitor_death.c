@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:57:06 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 12:31:21 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:52:35 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*thread_monitor_death(void *arg)
 	while (42)
 	{
 		/* sem_wait(philo->global->sem_the_end); */
-		if (philo->global->done == 1)
+		if (philo->global->the_end == 1)
 		{
 			/* sem_post(philo->global->sem_the_end); */
 			return (NULL);

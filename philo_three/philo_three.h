@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 13:46:17 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:45:58 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define SEMNAMESIZE	128
 # define SEM			"ph_sem"
 # define SEMFORKS		"forks"
+# define SEMEATCNT		"eat_cnt"
 # define SEMMESSAGE		"message"
 # define SEMDONE		"done"
 # define SEMTHEEND		"the_end"
@@ -85,7 +86,7 @@ typedef struct s_global
 	size_t	start_time;
 	t_arg	*args;
 	t_philo	*philos;
-	int		done;
+	int		the_end;
 	sem_t	*sem_forks;
 	sem_t	*sem_eat_cnt;
 	sem_t	*sem_message;

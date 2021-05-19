@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 01:10:17 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 12:35:54 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:59:23 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,29 @@ int	ph_put_err(const char *err)
 void	_put_message(int type)
 {
 	if (type == DIED)
-		printf("%s died\n%s", RED, RESET);
+	{
+		ft_putstr_fd(RED, 1);
+		ft_putstr_fd(" died\n", 1);
+		ft_putstr_fd(RESET, 1);
+	}
 	if (type == FORK)
-		printf(" has taken a fork\n");
+		ft_putstr_fd(" has taken a fork\n", 1);
 	else if (type == EAT)
-		printf("%s is eating\n%s", GREEN, RESET);
+	{
+		ft_putstr_fd(GREEN, 1);
+		ft_putstr_fd(" is eating\n", 1);
+		ft_putstr_fd(RESET, 1);
+	}
 	else if (type == SLEEP)
-		printf (" is sleeping\n");
+		ft_putstr_fd(" is sleeping\n", 1);
 	else if (type == THINK)
-		printf(" is thinkig\n");
+		ft_putstr_fd(" is thinkig\n", 1);
 	else if (type == DONE)
-		printf("%sDone!\n%s", BLUE, RESET);
+	{
+		ft_putstr_fd(BLUE, 1);
+		ft_putstr_fd("Done!\n", 1);
+		ft_putstr_fd(RESET, 1);
+	}
 }
 
 int	ph_put_message(t_philo *philo, int type)
@@ -40,9 +52,8 @@ int	ph_put_message(t_philo *philo, int type)
 	static int	done = 0;
 
 	/* sem_wait(philo->global->sem_the_end); */
-	if (philo->global->done == 1)
+	if (philo->global->the_end == 1)
 	{
-		/* printf("died! %d\n", philo->pos); */
 		/* sem_post(philo->global->sem_the_end); */
 		return (0);
 	}
@@ -51,9 +62,10 @@ int	ph_put_message(t_philo *philo, int type)
 		return (1);
 	if (done == 0)
 	{
-		printf("%ld\t", ph_get_time_msec() - philo->global->start_time);
+		ft_putnbr_fd(ph_get_time_msec() - philo->global->start_time, 1);
+		ft_putstr_fd("\t", 1);
 		if (type != DONE)
-			printf("%d", philo->pos + 1);
+			ft_putnbr_fd(philo->pos + 1, 1);
 		_put_message(type);
 		if (type == DONE || type == DIED)
 			done = 1;

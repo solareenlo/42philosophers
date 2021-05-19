@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 11:29:37 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 21:20:03 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:46:29 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*thread_monitor_eat_cnt(void *arg)
 	{
 		if (cnt == global->args->number_of_philo)
 			break ;
-		if (global->done == 1)
+		if (global->the_end == 1)
 			return (NULL);
 		if (_is_full(global, &cnt))
 		{

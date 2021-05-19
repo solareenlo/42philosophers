@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 02:43:10 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 11:22:37 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:38:53 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	_sem_unlink_global(t_global *global)
 	{
 		if (sem_close(global->sem_eat_cnt) != 0)
 			ret++;
-		if (sem_unlink(SEMFORKS) != 0)
+		if (sem_unlink(SEMEATCNT) != 0)
 			ret++;
 	}
 	if (global->sem_message != SEM_FAILED)
@@ -102,7 +102,7 @@ static int	_sem_unlink_global(t_global *global)
 	{
 		if (sem_close(global->sem_the_end) != 0)
 			ret++;
-		if (sem_unlink(SEMDONE) != 0)
+		if (sem_unlink(SEMTHEEND) != 0)
 			ret++;
 	}
 	return (ret);

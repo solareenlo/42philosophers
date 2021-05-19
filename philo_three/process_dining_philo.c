@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 00:41:20 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 12:31:08 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:53:00 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*process_dining_philo(t_philo *philo)
 	while (42)
 	{
 		/* sem_wait(philo->global->sem_the_end); */
-		if (philo->global->done == 1)
+		if (philo->global->the_end == 1)
 		{
 			/* sem_post(philo->global->sem_the_end); */
 			exit(0);
