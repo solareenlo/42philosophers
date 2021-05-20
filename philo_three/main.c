@@ -6,11 +6,19 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:38 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/21 02:13:39 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/21 02:34:00 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
+
+static void	_exec_child(t_philo *philo, pid_t *pids)
+{
+	free(pids);
+	if (process_dining_philo(philo))
+		exit(1);
+	exit(0);
+}
 
 static int	_start_processes(t_global *global, pid_t *pids)
 {
@@ -28,12 +36,7 @@ static int	_start_processes(t_global *global, pid_t *pids)
 			exit(process_kill(pids, i));
 		}
 		else if (pid == 0)
-		{
-			free(pids);
-			if (process_dining_philo(&(global->philos[i])))
-				exit(1);
-			exit(0);
-		}
+			_exec_child(&(global->philos[i]), pids);
 		else
 		{
 			pids[i] = pid;
