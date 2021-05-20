@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 19:35:15 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 17:47:47 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 21:34:23 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,31 @@ void	ph_wait_processes(pid_t *pids, t_arg args)
 		else
 			while (waitpid(-1, NULL, 0) > 0)
 				;
+	}
+}
+
+void	ph_wait_philosophers2(t_global *global, pid_t *pids)
+{
+	int	state;
+	int	i;
+
+	i = 0;
+	while (i < global->args->number_of_philo)
+	{
+		waitpid(-1, &state, 0);
+		if (WEXITSTATUS(state) == 1)
+		{
+			if (++i == global->args->number_of_philo)
+				break ;
+		}
+		else
+		{
+			while (global->args->number_of_philo--)
+			{
+				kill(pids[global->args->number_of_philo], SIGKILL);
+				usleep(500);
+			}
+			break ;
+		}
 	}
 }

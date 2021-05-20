@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:38 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 20:16:08 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 22:21:17 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	_start_processes(t_global *global, pid_t *pids)
 	_run_processes(global, 0, pids);
 	_run_processes(global, 1, pids);
 	sem_wait(global->sem_done);
-	global->the_end = 1;
+	/* global->the_end = 1; */
 	i = global->args->number_of_philo;
 	while (i--)
 		sem_post(global->sem_eat_cnt);
@@ -69,9 +69,10 @@ int	main(int argc, char *argv[])
 	if (global.args->number_of_times_each_philo_must_eat)
 		if (thread_monitor_eat_cnt(&global))
 			return (ph_sem_unlink_free(&global, args, pids)
-				|| ph_put_err("error: fatal1\n"));
+				|| ph_put_err("error: fatal2\n"));
 	_start_processes(&global, pids);
-	ph_kill_processes(pids, args.number_of_philo);
+	ph_wait_philosophers2(&global, pids);
+	/* ph_kill_processes(pids, args.number_of_philo); */
 	usleep(1000);
 	if (ph_sem_unlink_free(&global, args, pids))
 		return (ph_put_err("error: fatal3\n"));

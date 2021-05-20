@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 14:12:59 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/19 19:55:00 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/19 21:34:56 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int		ph_sem_unlink_free(t_global *global, t_arg args, pid_t *pids);
 
 int		ph_kill_processes(pid_t *pids, int cnt);
 void	ph_wait_processes(pid_t *pids, t_arg args);
+void	ph_wait_philosophers2(t_global *global, pid_t *pids);
 
 void	*process_dining_philo(t_philo *philo);
 void	*thread_monitor_death(void *arg);
