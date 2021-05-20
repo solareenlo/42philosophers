@@ -6,7 +6,7 @@
 /*   By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 16:17:16 by tayamamo          #+#    #+#             */
-/*   Updated: 2021/05/18 17:58:09 by tayamamo         ###   ########.fr       */
+/*   Updated: 2021/05/20 11:27:46 by tayamamo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ typedef struct s_philo
 	int				pos;
 	size_t			time_limit;
 	size_t			last_eat;
-	int				left_fork;
-	int				right_fork;
 	int				eat_cnt;
 	struct s_global	*global;
 	sem_t			*sem;
