@@ -6,7 +6,7 @@
 #    By: tayamamo <tayamamo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/18 00:17:10 by tayamamo          #+#    #+#              #
-#    Updated: 2021/05/18 00:17:10 by tayamamo         ###   ########.fr        #
+#    Updated: 2021/05/21 10:58:55 by tayamamo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,6 @@ $(NAME): $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
-
-.PHONY: address
-address: CFLAGS += -g -fsanitize=address
 
 .PHONY: thread
 thread: CFLAGS += -g -fsanitize=thread
